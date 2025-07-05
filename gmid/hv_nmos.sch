@@ -17,8 +17,8 @@ N -0 30 10 30 {lab=GND}
 N 10 30 10 70 {lab=GND}
 N 0 70 10 70 {lab=GND}
 C {sg13g2_pr/sg13_hv_nmos.sym} -20 30 0 0 {name=M1
-l=0.45u
-w=0.3u
+l=\{L\}
+w=1.0u
 ng=1
 m=1
 model=sg13_hv_nmos
@@ -29,23 +29,52 @@ C {vsource.sym} 120 90 0 0 {name=VDS value=3.3 savecurrent=false}
 C {gnd.sym} -100 140 0 0 {name=l1 lab=GND}
 C {gnd.sym} 0 140 0 0 {name=l2 lab=GND}
 C {gnd.sym} 120 140 0 0 {name=l3 lab=GND}
-C {code_shown.sym} -430 -210 0 0 {name=MODEL only_toplevel=false
+C {code_shown.sym} -580 -310 0 0 {name=MODEL only_toplevel=false
 format="tcleval( @value )"
 value="
 .lib cornerMOShv.lib mos_tt
 "}
-C {code_shown.sym} -430 -110 0 0 {name=NGSPICE only_toplevel=false
+C {code_shown.sym} -730 -240 0 0 {name=NGSPICE only_toplevel=false
 value="
+.param L=1e-6
+
 .option savecurrents
 .save all @n.xm1.nsg13_hv_nmos[ids]
 .control
-op
-dc VDS 0 1.2 0.01 VGS 0 1.2 0.01
+
+set wr_singlescale
+set wr_vecnames
+set appendwrite
+
+let start_L = 1e-6
+let stop_L = 10e-6
+let delta_L = 1e-6
+
+let start_VDS = 0
+let stop_VDS = 3.3
+let delta_VDS = 0.1
+
+let actual_L = start_L
+
+while actual_L le stop_L
+	alterparam L = actual_L
+	let actual_VDS = start_VDS
+	while actual_VDS le stop_VDS
+		alter VDS actual_VDS
+		dc VGS 0 3.3 0.01
+		wrdata hv_nmos.txt v(VDS) v(VGS) vector(@n.xm1.nsg13_hv_nmos[l])
+		let actual_VDS = actual_VDS + delta_VDS
+	end
+	let actual_L = actual_L + delta_L
+end
+
 write hv_nmos.raw
+
 .endc
+
 "}
 C {ngspice_get_value.sym} 10 -10 0 0 {name=r1 node=i(@n.xm1.nsg13_hv_nmos[ids])}
-C {launcher.sym} -370 60 0 0 {descr="annotate"
+C {launcher.sym} -80 280 0 0 {descr="annotate"
 tclcommand="xschem annotate_op"}
 C {lab_wire.sym} 120 -60 0 0 {name=p1 sig_type=std_logic lab=vds}
 C {lab_wire.sym} -100 30 0 0 {name=p2 sig_type=std_logic lab=vgs}

@@ -34,35 +34,35 @@ format="tcleval( @value )"
 value="
 .lib cornerMOShv.lib mos_tt
 "}
-C {code_shown.sym} -730 -240 0 0 {name=NGSPICE only_toplevel=false
+C {code_shown.sym} -1490 240 0 0 {name=NGSPICE only_toplevel=false
 value="
-.param L=1e-6
-
 .option savecurrents
-.save all @n.xm1.nsg13_hv_nmos[ids]
+.save all @n.xm1.nsg13_hv_nmos[ids] @n.xm1.nsg13_hv_nmos[l] @n.xm1.nsg13_hv_nmos[gm] @n.xm1.nsg13_hv_nmos[cgg] @n.xm1.nsg13_hv_nmos[gds]
 .control
+
+.param L=1e-6
 
 set wr_singlescale
 set wr_vecnames
 set appendwrite
 
 let start_L = 1e-6
-let stop_L = 10e-6
+let stop_L = 50e-6
 let delta_L = 1e-6
 
 let start_VDS = 0
-let stop_VDS = 3.3
+let stop_VDS = 3.4
 let delta_VDS = 0.1
 
 let actual_L = start_L
 
 while actual_L le stop_L
-	alterparam L = actual_L
+	alter @n.xm1.nsg13_hv_nmos[l] = actual_L
 	let actual_VDS = start_VDS
 	while actual_VDS le stop_VDS
 		alter VDS actual_VDS
 		dc VGS 0 3.3 0.01
-		wrdata hv_nmos.txt v(VDS) v(VGS) vector(@n.xm1.nsg13_hv_nmos[l])
+		wrdata hv_nmos.txt v(VDS) v(VGS) @n.xm1.nsg13_hv_nmos[ids] @n.xm1.nsg13_hv_nmos[l] @n.xm1.nsg13_hv_nmos[gm] @n.xm1.nsg13_hv_nmos[cgg] @n.xm1.nsg13_hv_nmos[gds]
 		let actual_VDS = actual_VDS + delta_VDS
 	end
 	let actual_L = actual_L + delta_L

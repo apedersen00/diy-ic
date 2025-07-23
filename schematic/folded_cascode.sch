@@ -208,3 +208,6 @@ C {vsource.sym} -230 270 0 0 {name=V4 value=3 savecurrent=false}
 C {lab_wire.sym} -230 200 0 0 {name=p22 sig_type=std_logic lab=nbias_upper}
 C {vsource.sym} -130 270 0 0 {name=V5 value=3 savecurrent=false}
 C {lab_wire.sym} -130 200 0 0 {name=p24 sig_type=std_logic lab=nbias_lower}
+C {ngspice_get_value.sym} 50 -40 0 0 {name=r1 node=i(@n.x1.xm1.nsg13_hv_nmos[ids])}
+C {launcher.sym} -290 50 0 0 {descr="annotate"
+tclcommand="xschem annotate_op"}

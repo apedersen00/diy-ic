@@ -90,18 +90,21 @@ C {code_shown.sym} -1070 -220 0 0 {name=NGSPICE only_toplevel=false
 value="
 .control
 op
-save all
+save all @n.x1.xm1.nsg13_hv_nmos[ids]
 write tb_aux_amp.raw
 .endc
 
 .control
-op
 ac dec 100 1 10e6
 save all
 let vout = abs(v(voutp) - v(voutm))
 let Av = db(v(voutp))
 let phase = 180*cph(vout)/pi
-write output_file.raw
+write folded_cascode.raw
+.endc
+
+.control
+op
 .endc
 "}
 C {/home/andreasp/diy-ic/schematic/folded_cascode.sym} 170 -260 0 0 {name=x1}

@@ -5,24 +5,24 @@ V {}
 S {}
 E {}
 B 2 560 -550 1360 -150 {flags=graph
-y1=-1.7370833
-y2=3.3629167
+y1=-27
+y2=-24
 ypos1=0
 ypos2=2
 divy=5
-subdivy=1
+subdivy=4
 unity=1
-x1=1
-x2=10000000
+x1=0
+x2=7
 divx=5
-subdivx=1
+subdivx=8
 xlabmag=1.0
 ylabmag=1.0
 node="voutp db20()"
 color=4
 dataset=-1
 unitx=1
-logx=0
+logx=1
 logy=0
 }
 T {Ctrl-Click to execute launcher} 560 -140 0 0 0.3 0.3 {layer=11}

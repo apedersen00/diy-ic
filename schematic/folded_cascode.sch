@@ -112,90 +112,90 @@ N 460 190 520 190 {lab=nbias_lower}
 N 620 -160 620 -120 {lab=#net3}
 N 420 -160 420 -140 {lab=#net2}
 C {sg13g2_pr/sg13_hv_nmos.sym} 20 0 0 0 {name=M1
-l=0.45u
-w=0.3u
-ng=1
-m=1
+l=1u
+w=44u
+ng=5
+m=10
 model=sg13_hv_nmos
 spiceprefix=X
 }
 C {sg13g2_pr/sg13_hv_pmos.sym} 440 -190 0 1 {name=M4
-l=0.4u
-w=0.3u
-ng=1
+l=1u
+w=15u
+ng=10
 m=1
 model=sg13_hv_pmos
 spiceprefix=X
 }
 C {sg13g2_pr/sg13_hv_nmos.sym} 260 0 0 1 {name=M2
-l=0.45u
-w=0.3u
-ng=1
-m=1
+l=1u
+w=44u
+ng=5
+m=10
 model=sg13_hv_nmos
 spiceprefix=X
 }
 C {sg13g2_pr/sg13_hv_nmos.sym} 120 130 0 0 {name=M3
-l=0.45u
-w=0.3u
-ng=1
-m=1
+l=1u
+w=12u
+ng=10
+m=10
 model=sg13_hv_nmos
 spiceprefix=X
 }
 C {sg13g2_pr/sg13_hv_pmos.sym} 600 -190 0 0 {name=M5
-l=0.4u
-w=0.3u
-ng=1
+l=1u
+w=15u
+ng=10
 m=1
 model=sg13_hv_pmos
 spiceprefix=X
 }
 C {sg13g2_pr/sg13_hv_pmos.sym} 440 -70 0 1 {name=M6
-l=0.4u
-w=0.3u
-ng=1
+l=1u
+w=15u
+ng=10
 m=1
 model=sg13_hv_pmos
 spiceprefix=X
 }
 C {sg13g2_pr/sg13_hv_pmos.sym} 600 -70 0 0 {name=M7
-l=0.4u
-w=0.3u
-ng=1
+l=1u
+w=15u
+ng=10
 m=1
 model=sg13_hv_pmos
 spiceprefix=X
 }
 C {ipin.sym} 520 -300 0 0 {name=p2 lab=VDD}
 C {sg13g2_pr/sg13_hv_nmos.sym} 600 70 0 0 {name=M9
-l=0.45u
-w=0.3u
-ng=1
+l=1u
+w=15u
+ng=10
 m=1
 model=sg13_hv_nmos
 spiceprefix=X
 }
 C {sg13g2_pr/sg13_hv_nmos.sym} 440 70 0 1 {name=M8
-l=0.45u
-w=0.3u
-ng=1
+l=1u
+w=15u
+ng=10
 m=1
 model=sg13_hv_nmos
 spiceprefix=X
 }
 C {sg13g2_pr/sg13_hv_nmos.sym} 600 190 0 0 {name=M11
-l=0.45u
-w=0.3u
-ng=1
+l=1u
+w=15u
+ng=10
 m=1
 model=sg13_hv_nmos
 spiceprefix=X
 }
 C {sg13g2_pr/sg13_hv_nmos.sym} 440 190 0 1 {name=M10
-l=0.45u
-w=0.3u
-ng=1
+l=1u
+w=15u
+ng=10
 m=1
 model=sg13_hv_nmos
 spiceprefix=X
@@ -209,16 +209,16 @@ C {lab_wire.sym} 520 40 0 0 {name=p9 sig_type=std_logic lab=nbias_upper}
 C {lab_wire.sym} 520 160 0 0 {name=p10 sig_type=std_logic lab=nbias_lower}
 C {opin.sym} 620 0 0 0 {name=p11 lab=vop}
 C {opin.sym} 420 0 0 0 {name=p12 lab=von}
-C {vsource.sym} -530 270 0 0 {name=V1 value=3 savecurrent=false}
+C {vsource.sym} -530 270 0 0 {name=V1 value=1.0 savecurrent=false}
 C {lab_wire.sym} -530 200 0 0 {name=p16 sig_type=std_logic lab=tail_bias}
-C {vsource.sym} -430 270 0 0 {name=V2 value=3 savecurrent=false}
+C {vsource.sym} -430 270 0 0 {name=V2 value=1 savecurrent=false}
 C {ipin.sym} 520 340 3 0 {name=p17 lab=VSS}
 C {lab_wire.sym} -430 200 0 0 {name=p18 sig_type=std_logic lab=pbias_upper}
-C {vsource.sym} -330 270 0 0 {name=V3 value=3 savecurrent=false}
+C {vsource.sym} -330 270 0 0 {name=V3 value=1 savecurrent=false}
 C {lab_wire.sym} -330 200 0 0 {name=p20 sig_type=std_logic lab=pbias_lower}
-C {vsource.sym} -230 270 0 0 {name=V4 value=3 savecurrent=false}
+C {vsource.sym} -230 270 0 0 {name=V4 value=2 savecurrent=false}
 C {lab_wire.sym} -230 200 0 0 {name=p22 sig_type=std_logic lab=nbias_upper}
-C {vsource.sym} -130 270 0 0 {name=V5 value=3 savecurrent=false}
+C {vsource.sym} -130 270 0 0 {name=V5 value=2 savecurrent=false}
 C {lab_wire.sym} -130 200 0 0 {name=p24 sig_type=std_logic lab=nbias_lower}
 C {sg13g2_pr/annotate_fet_params.sym} -540 -470 0 0 {name=annot1 ref=M1}
 C {sg13g2_pr/annotate_fet_params.sym} -420 -470 0 0 {name=annot2 ref=M2}

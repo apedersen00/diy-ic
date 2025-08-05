@@ -5,15 +5,15 @@ V {}
 S {}
 E {}
 B 2 560 -550 1360 -150 {flags=graph
-y1=-27
-y2=-24
+y1=75.2
+y2=117.2
 ypos1=0
 ypos2=2
 divy=5
 subdivy=4
 unity=1
-x1=0
-x2=7
+x1=-1.05
+x2=5.95
 divx=5
 subdivx=8
 xlabmag=1.0
@@ -56,12 +56,12 @@ N -150 -80 -150 -60 {lab=GND}
 C {lab_wire.sym} 150 -420 0 0 {name=p1 sig_type=std_logic lab=vdd}
 C {capa.sym} 340 -180 0 0 {name=C1
 m=1
-value=500f
+value=100f
 footprint=1206
 device="ceramic capacitor"}
 C {capa.sym} 460 -220 0 0 {name=C2
 m=1
-value=500f
+value=100f
 footprint=1206
 device="ceramic capacitor"}
 C {gnd.sym} 340 -130 0 0 {name=l2 lab=GND}
@@ -72,7 +72,7 @@ C {gnd.sym} 150 -140 0 0 {name=l5 lab=GND}
 C {lab_wire.sym} -600 -280 0 0 {name=p4 sig_type=std_logic lab=vdd}
 C {vsource.sym} -600 -190 0 0 {name=V2 value="DC 3.3" savecurrent=false}
 C {gnd.sym} -600 -130 0 0 {name=l6 lab=GND}
-C {vsource.sym} -480 -190 0 0 {name=V3 value="DC 1.65 AC 1.0" savecurrent=false}
+C {vsource.sym} -480 -190 0 0 {name=V3 value="DC 1.65 AC -1.0" savecurrent=false}
 C {gnd.sym} -480 -140 0 0 {name=l7 lab=GND}
 C {lab_wire.sym} -480 -280 0 0 {name=p6 sig_type=std_logic lab=vinm}
 C {lab_wire.sym} -40 -240 0 0 {name=p7 sig_type=std_logic lab=vinm}

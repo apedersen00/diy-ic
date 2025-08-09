@@ -70,6 +70,10 @@ N 160 -220 160 -180 {lab=vdd}
 N 40 360 40 380 {lab=vss}
 N 80 190 200 190 {lab=vb_n}
 N 140 170 140 190 {lab=vb_n}
+N -300 280 -300 320 {lab=vss}
+N -300 180 -300 220 {lab=vb_p}
+N -220 280 -220 320 {lab=vss}
+N -220 180 -220 220 {lab=vb_p}
 C {sg13g2_pr/sg13_hv_pmos.sym} 20 0 0 0 {name=M1
 l=0.4u
 w=0.3u
@@ -193,3 +197,9 @@ C {ipin.sym} -10 0 0 0 {name=p21 lab=v-}
 C {ipin.sym} 300 0 0 1 {name=p22 lab=v+}
 C {ipin.sym} 160 -220 1 0 {name=p23 lab=vdd}
 C {ipin.sym} 40 380 3 0 {name=p24 lab=vss}
+C {vsource.sym} -300 250 0 0 {name=V1 value=1.5 savecurrent=false}
+C {lab_wire.sym} -300 180 3 1 {name=p3 sig_type=std_logic lab=vb_p}
+C {lab_wire.sym} -300 320 3 0 {name=p6 sig_type=std_logic lab=vss}
+C {vsource.sym} -220 250 0 0 {name=V2 value=1.5 savecurrent=false}
+C {lab_wire.sym} -220 180 3 1 {name=p7 sig_type=std_logic lab=vb_n}
+C {lab_wire.sym} -220 320 3 0 {name=p25 sig_type=std_logic lab=vss}

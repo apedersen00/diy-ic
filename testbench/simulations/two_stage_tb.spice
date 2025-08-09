@@ -1,0 +1,63 @@
+** sch_path: /home/andreasp/diy-ic/testbench/two_stage_tb.sch
+**.subckt two_stage_tb
+C2 voutp GND 100f m=1
+V2 vdd GND DC 3.3
+V3 vinm GND DC 1.65 AC -1.0
+V4 vinp GND DC 1.65 AC 1.0
+L9 voutp vinm 4G m=1
+C3 vinm GND 4G m=1
+x1 vdd voutp vinp vinm GND two_stage
+**** begin user architecture code
+
+.lib cornerMOShv.lib mos_tt
+.lib /home/andreasp/os-eda/IHP-Open-PDK/ihp-sg13g2/libs.tech/ngspice/models/cornerCAP.lib cap_typ
+
+
+
+.param temp=27
+.include two_stage_tb.save
+.control
+op
+save all
+write two_stage_tb.raw
+set appendwrite #writing into the same raw file
+ac dec 100 1 10e6
+save all
+let Av = db(v(voutp))
+let phase = 180*cph(voutp)/pi
+write two_stage_tb.raw
+.endc
+
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  two_stage.sym # of pins=5
+** sym_path: /home/andreasp/diy-ic/schematic/two_stage.sym
+** sch_path: /home/andreasp/diy-ic/schematic/two_stage.sch
+.subckt two_stage vdd out v+ v- vss
+*.opin out
+*.ipin iout
+*.ipin v-
+*.ipin v+
+*.ipin vdd
+*.ipin vss
+XM1 net2 v- net1 vdd sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
+XM2 net3 v+ net1 vdd sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
+XM5 mirror vb_n net5 vss sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
+XM11 net1 tail vdd vdd sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
+XM12 tail tail vdd vdd sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
+XM3 mirror vb_p net2 vdd sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
+XM4 net4 vb_p net3 vdd sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
+XM6 net4 vb_n net6 vss sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
+XM7 net5 mirror vss vss sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
+XM8 net6 mirror vss vss sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
+XM9 out net4 vss net7 sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
+XC1 net4 out cap_cmim w=7.0e-6 l=7.0e-6 m=1
+XM10 out tail vdd net8 sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
+V1 vb_p vss 1.5
+V2 vb_n vss 1.5
+.ends
+
+.GLOBAL GND
+.end

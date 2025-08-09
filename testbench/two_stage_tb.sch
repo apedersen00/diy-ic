@@ -5,15 +5,15 @@ V {}
 S {}
 E {}
 B 2 560 -550 1360 -150 {flags=graph
-y1=75.2
-y2=117.2
+y1=-160
+y2=13
 ypos1=0
 ypos2=2
 divy=5
 subdivy=4
 unity=1
-x1=-1.05
-x2=5.95
+x1=0
+x2=7
 divx=5
 subdivx=8
 xlabmag=1.0
@@ -82,15 +82,15 @@ C {code_shown.sym} -640 -680 0 0 {name=MODEL only_toplevel=false
 format="tcleval( @value )"
 value="
 .lib cornerMOShv.lib mos_tt
+.lib $::SG13G2_MODELS/cornerCAP.lib cap_typ 
 "}
 C {code_shown.sym} -640 -600 0 0 {name=NGSPICE only_toplevel=false
 value="
 .param temp=27
-
+.include two_stage_tb.save
 .control
 op
 save all   
-print @n.x1.xm1.nsg13_hv_nmos[ids]
 write two_stage_tb.raw
 set appendwrite #writing into the same raw file
 ac dec 100 1 10e6
@@ -102,7 +102,7 @@ write two_stage_tb.raw
 "}
 C {launcher.sym} 620 -40 0 0 {name=h5
 descr="load waves" 
-tclcommand="xschem raw_read $netlist_dir/folded_cascode_tb.raw ac"
+tclcommand="xschem raw_read $netlist_dir/two_stage_tb.raw ac"
 }
 C {devices/launcher.sym} 620 -70 0 0 {name=h2
 descr="OP annotate" 

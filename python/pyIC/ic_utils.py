@@ -1,6 +1,7 @@
 ## utils.py
 
 import math
+import subprocess
 
 class IcUtils():
     @staticmethod
@@ -29,3 +30,31 @@ class IcUtils():
         """
         val = 20 * math.log10(gain_val)
         return val
+
+    @staticmethod
+    def getop(path: str, model: str, length: float, vds: float, gmid: float, id: float):
+        result = subprocess.run(
+            ["poetry", "run", "python", "main.py", "getop", model, str(length), str(vds), str(gmid), str(id)],
+            cwd=path,
+            capture_output=True,
+            text=True
+        )
+        result_dict = {}
+        result = result.stdout.split('\n')
+
+        gmoverid    = float(result[1].split(' ')[-1])
+        gmro        = float(result[3].split(' ')[-1])
+        ft          = float(result[4].split(' ')[-1])
+        gm          = gmoverid * (id * 1e-9)
+
+        result_dict['gmid'] = gmoverid
+        result_dict['vgs']  = float(result[2].split(' ')[-1])
+        result_dict['gmro'] = gmro
+        result_dict['ft']   = ft
+        result_dict['l']    = length
+        result_dict['w']    = float(result[5].split(' ')[-1])
+        result_dict['gm']   = gm
+        result_dict['ro']   = gmro / gm
+        result_dict['id']   = id
+        
+        return result_dict

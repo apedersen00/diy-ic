@@ -2,6 +2,8 @@
 
 import math
 import subprocess
+import numpy as np
+from tabulate import tabulate
 
 class IcUtils():
     @staticmethod
@@ -32,6 +34,13 @@ class IcUtils():
         return val
 
     @staticmethod
+    def parallel(res_list):
+        sum = 0
+        for res in res_list:
+            sum += 1 / res
+        return 1 / sum
+
+    @staticmethod
     def getop(path: str, model: str, length: float, vds: float, gmid: float, id: float):
         result = subprocess.run(
             ["poetry", "run", "python", "main.py", "getop", model, str(length), str(vds), str(gmid), str(id)],
@@ -56,5 +65,16 @@ class IcUtils():
         result_dict['gm']   = gm
         result_dict['ro']   = gmro / gm
         result_dict['id']   = id
+        result_dict['cgg']  = (gm / (2 * np.pi)) / ft
         
         return result_dict
+
+    @staticmethod
+    def printop(op) -> None:
+        table = []
+        for key, item in op.items():
+            val = item
+            if key == 'id':
+                val = item * 1e-9
+            table.append([key, IcUtils.eng_format(val)])
+        print(tabulate(table, tablefmt='rounded_outline', disable_numparse=True, colalign=['left', 'right']))

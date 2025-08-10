@@ -20,10 +20,10 @@ N 140 -150 150 -150 {lab=vdd}
 N -110 -110 -100 -110 {lab=vdd}
 N -110 -150 -110 -110 {lab=vdd}
 N -110 -150 -100 -150 {lab=vdd}
-N -100 -80 -100 -60 {lab=tail}
-N -40 -110 -40 -60 {lab=tail}
-N -100 -60 -40 -60 {lab=tail}
-N -100 -60 -100 -20 {lab=tail}
+N -100 -80 -100 -60 {lab=iout}
+N -40 -110 -40 -60 {lab=iout}
+N -100 -60 -40 -60 {lab=iout}
+N -100 -60 -100 -20 {lab=iout}
 N 40 30 40 50 {lab=#net2}
 N 240 30 240 50 {lab=#net3}
 N 40 140 40 160 {lab=mirror}
@@ -45,7 +45,7 @@ N 240 220 240 260 {lab=#net6}
 N -80 140 40 140 {lab=mirror}
 N 140 270 140 290 {lab=mirror}
 N 360 140 480 140 {lab=#net4}
-N 520 170 520 360 {lab=vss}
+N 520 200 520 360 {lab=vss}
 N 240 140 360 140 {lab=#net4}
 N 240 360 520 360 {lab=vss}
 N 450 40 520 40 {lab=out}
@@ -53,12 +53,11 @@ N 520 40 520 110 {lab=out}
 N 360 40 390 40 {lab=#net4}
 N 360 40 360 140 {lab=#net4}
 N 160 -180 520 -180 {lab=vdd}
-N 520 -180 520 -140 {lab=vdd}
+N 520 -160 520 -140 {lab=vdd}
 N 520 20 520 40 {lab=out}
-N -60 -110 -40 -110 {lab=tail}
-N -40 -110 -10 -110 {lab=tail}
-N 80 -110 100 -110 {lab=tail}
-N 460 -110 480 -110 {lab=tail}
+N -60 -110 -40 -110 {lab=iout}
+N 80 -110 100 -110 {lab=iout}
+N 460 -110 480 -110 {lab=iout}
 N 520 20 560 20 {lab=out}
 N -10 -0 -0 0 {lab=v-}
 N 280 0 300 -0 {lab=v+}
@@ -80,6 +79,14 @@ N 240 110 240 140 {lab=#net4}
 N 520 -80 520 20 {lab=out}
 N 140 -180 160 -180 {lab=vdd}
 N 80 190 140 190 {lab=vb_n}
+N 520 140 540 140 {lab=vss}
+N 540 140 540 200 {lab=vss}
+N 520 200 540 200 {lab=vss}
+N 520 170 520 200 {lab=vss}
+N 520 -110 540 -110 {lab=vdd}
+N 540 -160 540 -110 {lab=vdd}
+N 520 -160 540 -160 {lab=vdd}
+N 520 -180 520 -160 {lab=vdd}
 C {sg13g2_pr/sg13_hv_pmos.sym} 20 0 0 0 {name=M1
 l=0.4u
 w=0.3u
@@ -193,12 +200,10 @@ m=1
 model=sg13_hv_pmos
 spiceprefix=X
 }
-C {lab_wire.sym} -10 -110 0 1 {name=p15 sig_type=std_logic lab=tail}
-C {lab_wire.sym} 80 -110 0 0 {name=p16 sig_type=std_logic lab=tail}
-C {lab_wire.sym} 460 -110 0 0 {name=p17 sig_type=std_logic lab=tail}
+C {lab_wire.sym} 460 -110 0 0 {name=p17 sig_type=std_logic lab=iout}
 C {opin.sym} 560 20 0 0 {name=p18 lab=out}
 C {ipin.sym} -100 -20 3 0 {name=p19 lab=iout}
-C {lab_wire.sym} 80 -110 0 0 {name=p20 sig_type=std_logic lab=tail}
+C {lab_wire.sym} 80 -110 0 0 {name=p20 sig_type=std_logic lab=iout}
 C {ipin.sym} -10 0 0 0 {name=p21 lab=v-}
 C {ipin.sym} 300 0 0 1 {name=p22 lab=v+}
 C {ipin.sym} 160 -220 1 0 {name=p23 lab=vdd}

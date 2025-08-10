@@ -5,8 +5,8 @@ V {}
 S {}
 E {}
 B 2 560 -550 1360 -150 {flags=graph
-y1=-160
-y2=13
+y1=4.8
+y2=36
 ypos1=0
 ypos2=2
 divy=5
@@ -45,6 +45,8 @@ N -600 -160 -600 -130 {lab=GND}
 N -250 -180 -250 -160 {lab=vinm}
 N -40 -240 70 -240 {lab=vinm}
 N 410 -280 480 -280 {lab=voutp}
+N 210 -180 210 -120 {lab=#net1}
+N 210 -60 210 -40 {lab=GND}
 C {lab_wire.sym} 150 -420 0 0 {name=p1 sig_type=std_logic lab=vdd}
 C {capa.sym} 480 -180 0 0 {name=C2
 m=1
@@ -132,3 +134,5 @@ xschem netlist
 simulate
 "}
 C {two_stage.sym} 170 -260 0 0 {name=x1}
+C {gnd.sym} 210 -40 0 0 {name=l1 lab=GND}
+C {isource.sym} 210 -90 0 0 {name=I0 value=100u}

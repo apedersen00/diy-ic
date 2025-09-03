@@ -35,6 +35,7 @@ class XschemUtils():
             for i, line in enumerate(lines):
                 if f"{{name={device}\n" in line:
                     for par, val in params.items():
+                        val = int(round(float(val)))
                         for j in range(0, 10):
                             if f'{par.lower()}=' in lines[i+j]:
                                 lines[i+j] = f'{par.lower()}={val}\n'

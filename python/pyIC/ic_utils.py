@@ -70,11 +70,14 @@ class IcUtils():
         return result_dict
 
     @staticmethod
-    def printop(op) -> None:
+    def printop(op, title=None) -> None:
         table = []
         for key, item in op.items():
             val = item
             if key == 'id':
                 val = item * 1e-9
             table.append([key, IcUtils.eng_format(val)])
+        if title:
+            print(tabulate(table, headers=[title, ''], tablefmt='rounded_outline', disable_numparse=True, colalign=['left', 'right']))
+            return
         print(tabulate(table, tablefmt='rounded_outline', disable_numparse=True, colalign=['left', 'right']))

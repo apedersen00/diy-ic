@@ -1,0 +1,19 @@
+** sch_path: /home/andre/diy-ic/schematic/bandgap_ref.sch
+**.subckt bandgap_ref vdd vo vbgr v+ v- vss
+*.ipin vdd
+*.ipin vss
+*.ipin vo
+*.opin vbgr
+*.ipin v+
+*.ipin v-
+XM1 net1 net1 vss vss sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
+XM2 v- v+ vss vss sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
+XM3 v- vo vdd vdd sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
+XM4 v+ vo vdd vdd sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
+XR1 net1 v+ rppd w=0.5e-6 l=0.5e-6 m=1 b=0
+XM5 vbgr vo vdd vdd sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
+XR3 vss v+ rppd w=0.5e-6 l=0.5e-6 m=1 b=0
+XR4 vss vbgr rppd w=0.5e-6 l=0.5e-6 m=1 b=0
+XC1 vbgr vss cap_cmim w=7.0e-6 l=7.0e-6 m=1
+**.ends
+.end

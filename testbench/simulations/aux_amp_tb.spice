@@ -1,0 +1,79 @@
+** sch_path: /home/andre/diy-ic/testbench/aux_amp_tb.sch
+**.subckt aux_amp_tb
+C2 voutp GND 100f m=1
+V2 vdd GND DC 3.3
+V4 vinp GND DC 1.65 AC 1.0
+L9 voutp vinp 4G m=1
+C3 vinp GND 4G m=1
+x2 vdd vinm vinp voutp voutm GND aux_amp
+C1 voutm GND 100f m=1
+L2 voutm vinm 4G m=1
+C4 vinm GND 4G m=1
+V1 vinm GND DC 1.65 AC -1.0
+**** begin user architecture code
+
+.lib cornerMOShv.lib mos_tt
+.lib /home/andre/os_eda/IHP-Open-PDK/ihp-sg13g2/libs.tech/ngspice/models/cornerCAP.lib cap_typ
+
+
+
+.param temp=27
+.include aux_amp_tb.save
+.control
+op
+save all
+write aux_amp_tb.raw
+set appendwrite #writing into the same raw file
+ac dec 100 1 100e6
+save all
+
+let Av = db(v(voutp))
+let phase = 180/3.14*vp(voutp)
+let CMRR = db((v(voutp)/v(vinp))/(v(voutp_cmrr)/v(vinp)))
+let PSRR = db(v(voutp_psrr)/v(vdd_ac))
+
+echo ---
+meas ac gm_db find vdb(voutp) when vp(voutp)=0
+meas ac pm_deg find phase when vdb(voutp)=0
+meas ac _3db_f when phase=-45
+meas ac _0db_f when vdb(voutp)=0
+meas ac dc_gain find vdb(voutp) at=1
+echo ---
+
+write aux_amp_tb.raw
+.endc
+
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  aux_amp.sym # of pins=6
+** sym_path: /home/andre/diy-ic/schematic/aux_amp.sym
+** sch_path: /home/andre/diy-ic/schematic/aux_amp.sch
+.subckt aux_amp vdd vinm vinp voutp voutm vss
+*.iopin vss
+*.iopin voutm
+*.iopin vinp
+*.iopin vdd
+*.iopin voutp
+*.iopin vinm
+XM2 net3 vinp net1 net1 sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
+XM3 net4 cm_bias net1 net1 sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
+XM4 net1 nbias vss vss sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
+XM6 net3 cm_bias net2 net2 sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
+XM7 net4 vinm net2 net2 sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
+XM8 net2 nbias vss vss sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
+XM9 voutm nbias vss vss sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
+XM11 voutp nbias vss vss sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
+V2 pbias_top vss 1.65
+V3 pbias vss 1.65
+V4 cm_bias vss 1.65
+V1 nbias vss 1.65
+XM1 voutm pbias net3 net3 sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
+XM5 net3 pbias_top vdd vdd sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
+XM10 net4 pbias_top vdd vdd sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
+XM12 voutp pbias net4 net4 sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
+.ends
+
+.GLOBAL GND
+.end

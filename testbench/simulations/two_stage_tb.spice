@@ -1,17 +1,19 @@
-** sch_path: /home/andreasp/diy-ic/testbench/two_stage_tb.sch
+** sch_path: /home/andre/diy-ic/testbench/two_stage_tb.sch
 **.subckt two_stage_tb
 C2 voutp GND 100f m=1
 V2 vdd GND DC 3.3
-V3 vinm GND DC 1.65 AC -1.0
 V4 vinp GND DC 1.65 AC 1.0
 L9 voutp vinm 4G m=1
 C3 vinm GND 4G m=1
 x1 vdd voutp vinp vinm GND net1 two_stage
-I0 net1 GND 100u
+I0 net1 GND 10u
+C1 voutp_cmrr GND 100f m=1
+x2 vdd voutp_cmrr vinp vinp GND net2 two_stage
+I1 net2 GND 10u
 **** begin user architecture code
 
 .lib cornerMOShv.lib mos_tt
-.lib /home/andreasp/os-eda/IHP-Open-PDK/ihp-sg13g2/libs.tech/ngspice/models/cornerCAP.lib cap_typ
+.lib /home/andre/os_eda/IHP-Open-PDK/ihp-sg13g2/libs.tech/ngspice/models/cornerCAP.lib cap_typ
 
 
 
@@ -22,10 +24,23 @@ op
 save all
 write two_stage_tb.raw
 set appendwrite #writing into the same raw file
-ac dec 100 1 10e6
+ac dec 100 1 100e6
 save all
+
 let Av = db(v(voutp))
-let phase = 180*cph(voutp)/pi
+let phase = 180/3.14*vp(voutp)
+let CMRR = db((v(voutp)/v(vinp))/(v(voutp_cmrr)/v(vinp)))
+
+echo ---
+echo ---
+meas ac gm_db find vdb(voutp) when vp(voutp)=0
+meas ac pm_deg find phase when vdb(voutp)=0
+meas ac 3db_f when phase=-45
+meas ac 0db_f when vdb(voutp)=0
+meas ac dc_gain find vdb(voutp) at=1
+echo ---
+echo ---
+
 write two_stage_tb.raw
 .endc
 
@@ -34,8 +49,8 @@ write two_stage_tb.raw
 **.ends
 
 * expanding   symbol:  two_stage.sym # of pins=6
-** sym_path: /home/andreasp/diy-ic/schematic/two_stage.sym
-** sch_path: /home/andreasp/diy-ic/schematic/two_stage.sch
+** sym_path: /home/andre/diy-ic/schematic/two_stage.sym
+** sch_path: /home/andre/diy-ic/schematic/two_stage.sch
 .subckt two_stage vdd out v+ v- vss iout
 *.opin out
 *.ipin iout
@@ -43,21 +58,21 @@ write two_stage_tb.raw
 *.ipin v+
 *.ipin vdd
 *.ipin vss
-XM1 net2 v- net1 vdd sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
-XM2 net3 v+ net1 vdd sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
-XM5 mirror vb_n net5 vss sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
-XM11 net1 iout vdd vdd sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
-XM12 iout iout vdd vdd sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
-XM3 mirror vb_p net2 vdd sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
-XM4 net4 vb_p net3 vdd sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
-XM6 net4 vb_n net6 vss sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
-XM7 net5 mirror vss vss sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
-XM8 net6 mirror vss vss sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
-XM9 out net4 vss vss sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
-XC1 net4 out cap_cmim w=7.0e-6 l=7.0e-6 m=1
-XM10 out iout vdd vdd sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
-V1 vb_p vss 1.5
-V2 vb_n vss 1.5
+XM1 net2 v- net1 vdd sg13_hv_pmos w=23.0u l=5.0u ng=5 m=1
+XM2 net3 v+ net1 vdd sg13_hv_pmos w=23.0u l=5.0u ng=5 m=1
+XM5 mirror vb_n net5 vss sg13_hv_nmos w=0.370u l=2.0u ng=1 m=1
+XM11 net1 iout vdd vdd sg13_hv_pmos w=1.0u l=5.0u ng=1 m=1
+XM12 iout iout vdd vdd sg13_hv_pmos w=8.5u l=5.0u ng=1 m=1
+XM3 mirror vb_p net2 vdd sg13_hv_pmos w=1.3u l=1.0u ng=1 m=1
+XM4 net4 vb_p net3 vdd sg13_hv_pmos w=1.3u l=1.0u ng=1 m=1
+XM6 net4 vb_n net6 vss sg13_hv_nmos w=0.370u l=2.0u ng=1 m=1
+XM7 net5 mirror vss vss sg13_hv_nmos w=0.370u l=2.0u ng=1 m=1
+XM8 net6 mirror vss vss sg13_hv_nmos w=0.370u l=2.0u ng=1 m=1
+XM9 out net4 vss vss sg13_hv_nmos w=2.35u l=5.00u ng=1 m=1
+XC1 net4 out cap_cmim w=10.0e-6 l=10.0e-6 m=1
+XM10 out iout vdd vdd sg13_hv_pmos w=8.5u l=5.0u ng=1 m=1
+V1 vb_p vss 1.0
+V2 vb_n vss 2.0
 .ends
 
 .GLOBAL GND

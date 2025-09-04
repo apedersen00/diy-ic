@@ -5,15 +5,15 @@ V {}
 S {}
 E {}
 B 2 560 -550 1360 -150 {flags=graph
-y1=4.8
-y2=36
+y1=-9.8
+y2=130
 ypos1=0
 ypos2=2
 divy=5
 subdivy=4
 unity=1
 x1=0
-x2=7
+x2=8
 divx=5
 subdivx=8
 xlabmag=1.0
@@ -25,14 +25,54 @@ unitx=1
 logx=1
 logy=0
 }
+B 2 560 -980 1360 -580 {flags=graph
+y1=36
+y2=46
+ypos1=0
+ypos2=2
+divy=5
+subdivy=4
+unity=1
+x1=-0.4
+x2=7.6
+divx=5
+subdivx=8
+xlabmag=1.0
+ylabmag=1.0
+node="CMRR db20()"
+color=4
+dataset=-1
+unitx=1
+logx=1
+logy=0
+}
+B 2 1390 -550 2190 -150 {flags=graph
+y1=-180
+y2=180
+ypos1=0
+ypos2=2
+divy=5
+subdivy=4
+unity=1
+x1=0
+x2=8
+divx=5
+subdivx=8
+xlabmag=1.0
+ylabmag=1.0
+node=ph(voutp)
+color=4
+dataset=-1
+unitx=1
+logx=1
+logy=0
+autoload=1}
 T {Ctrl-Click to execute launcher} 560 -140 0 0 0.3 0.3 {layer=11}
 T {.save file can be created with IHP->"Create FET and BIP .save file"} 560 -20 0 0 0.3 0.3 {layer=11}
 N 150 -420 150 -380 {lab=vdd}
 N 150 -180 150 -140 {lab=GND}
 N 480 -280 480 -210 {lab=voutp}
 N 480 -150 480 -130 {lab=GND}
-N -480 -160 -480 -140 {lab=GND}
-N -480 -280 -480 -220 {lab=vinm}
 N -40 -320 70 -320 {lab=vinp}
 N -360 -160 -360 -140 {lab=GND}
 N -360 -280 -360 -220 {lab=vinp}
@@ -47,6 +87,15 @@ N -40 -240 70 -240 {lab=vinm}
 N 410 -280 480 -280 {lab=voutp}
 N 210 -180 210 -120 {lab=#net1}
 N 210 -60 210 -40 {lab=GND}
+N 160 70 160 110 {lab=vdd}
+N 160 310 160 350 {lab=GND}
+N 490 210 490 280 {lab=voutp_cmrr}
+N 490 340 490 360 {lab=GND}
+N -30 170 80 170 {lab=vinp}
+N -30 250 80 250 {lab=vinp}
+N 420 210 490 210 {lab=voutp_cmrr}
+N 220 310 220 370 {lab=#net2}
+N 220 430 220 450 {lab=GND}
 C {lab_wire.sym} 150 -420 0 0 {name=p1 sig_type=std_logic lab=vdd}
 C {capa.sym} 480 -180 0 0 {name=C2
 m=1
@@ -59,9 +108,6 @@ C {gnd.sym} 150 -140 0 0 {name=l5 lab=GND}
 C {lab_wire.sym} -600 -280 0 0 {name=p4 sig_type=std_logic lab=vdd}
 C {vsource.sym} -600 -190 0 0 {name=V2 value="DC 3.3" savecurrent=false}
 C {gnd.sym} -600 -130 0 0 {name=l6 lab=GND}
-C {vsource.sym} -480 -190 0 0 {name=V3 value="DC 1.65 AC -1.0" savecurrent=false}
-C {gnd.sym} -480 -140 0 0 {name=l7 lab=GND}
-C {lab_wire.sym} -480 -280 0 0 {name=p6 sig_type=std_logic lab=vinm}
 C {lab_wire.sym} -40 -240 0 0 {name=p7 sig_type=std_logic lab=vinm}
 C {lab_wire.sym} -40 -320 0 0 {name=p8 sig_type=std_logic lab=vinp}
 C {vsource.sym} -360 -190 0 0 {name=V4 value="DC 1.65 AC 1.0" savecurrent=false}
@@ -80,13 +126,13 @@ device="ceramic capacitor"}
 C {gnd.sym} -250 -60 0 0 {name=l10 lab=GND}
 C {lab_wire.sym} -250 -280 0 0 {name=p10 sig_type=std_logic lab=voutp}
 C {lab_wire.sym} -210 -160 0 1 {name=p13 sig_type=std_logic lab=vinm}
-C {code_shown.sym} -640 -680 0 0 {name=MODEL only_toplevel=false
+C {code_shown.sym} -640 -860 0 0 {name=MODEL only_toplevel=false
 format="tcleval( @value )"
 value="
 .lib cornerMOShv.lib mos_tt
 .lib $::SG13G2_MODELS/cornerCAP.lib cap_typ 
 "}
-C {code_shown.sym} -640 -600 0 0 {name=NGSPICE only_toplevel=false
+C {code_shown.sym} -640 -780 0 0 {name=NGSPICE only_toplevel=false
 value="
 .param temp=27
 .include two_stage_tb.save
@@ -95,10 +141,23 @@ op
 save all   
 write two_stage_tb.raw
 set appendwrite #writing into the same raw file
-ac dec 100 1 10e6
+ac dec 100 1 100e6
 save all
+
 let Av = db(v(voutp))
-let phase = 180*cph(voutp)/pi
+let phase = 180/3.14*vp(voutp)
+let CMRR = db((v(voutp)/v(vinp))/(v(voutp_cmrr)/v(vinp)))
+
+echo "---"
+echo "---"
+meas ac gm_db find vdb(voutp) when vp(voutp)=0
+meas ac pm_deg find phase when vdb(voutp)=0
+meas ac 3db_f when phase=-45
+meas ac 0db_f when vdb(voutp)=0
+meas ac dc_gain find vdb(voutp) at=1
+echo "---"
+echo "---"
+
 write two_stage_tb.raw
 .endc
 "}
@@ -135,4 +194,18 @@ simulate
 "}
 C {two_stage.sym} 170 -260 0 0 {name=x1}
 C {gnd.sym} 210 -40 0 0 {name=l1 lab=GND}
-C {isource.sym} 210 -90 0 0 {name=I0 value=100u}
+C {isource.sym} 210 -90 0 0 {name=I0 value=10u}
+C {lab_wire.sym} 160 70 0 0 {name=p3 sig_type=std_logic lab=vdd}
+C {capa.sym} 490 310 0 0 {name=C1
+m=1
+value=100f
+footprint=1206
+device="ceramic capacitor"}
+C {gnd.sym} 490 360 0 0 {name=l2 lab=GND}
+C {lab_wire.sym} 490 210 0 0 {name=p5 sig_type=std_logic lab=voutp_cmrr}
+C {gnd.sym} 160 350 0 0 {name=l4 lab=GND}
+C {lab_wire.sym} -30 170 0 0 {name=p11 sig_type=std_logic lab=vinp}
+C {two_stage.sym} 180 230 0 0 {name=x2}
+C {gnd.sym} 220 450 0 0 {name=l7 lab=GND}
+C {isource.sym} 220 400 0 0 {name=I1 value=10u}
+C {lab_wire.sym} -30 250 0 0 {name=p6 sig_type=std_logic lab=vinp}

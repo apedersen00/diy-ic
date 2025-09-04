@@ -67,9 +67,29 @@ unitx=1
 logx=1
 logy=0
 autoload=1}
+B 2 1390 -980 2190 -580 {flags=graph
+y1=29
+y2=46
+ypos1=0
+ypos2=2
+divy=5
+subdivy=4
+unity=1
+x1=0
+x2=8
+divx=5
+subdivx=8
+xlabmag=1.0
+ylabmag=1.0
+node="CMRR db20()"
+color=4
+dataset=-1
+unitx=1
+logx=1
+logy=0
+}
 T {Ctrl-Click to execute launcher} 560 -140 0 0 0.3 0.3 {layer=11}
 T {.save file can be created with IHP->"Create FET and BIP .save file"} 560 -20 0 0 0.3 0.3 {layer=11}
-N 150 -420 150 -380 {lab=vdd}
 N 150 -180 150 -140 {lab=GND}
 N 480 -280 480 -210 {lab=voutp}
 N 480 -150 480 -130 {lab=GND}
@@ -96,7 +116,25 @@ N -30 250 80 250 {lab=vinp}
 N 420 210 490 210 {lab=voutp_cmrr}
 N 220 310 220 370 {lab=#net2}
 N 220 430 220 450 {lab=GND}
-C {lab_wire.sym} 150 -420 0 0 {name=p1 sig_type=std_logic lab=vdd}
+N 160 790 160 830 {lab=GND}
+N 490 690 490 760 {lab=voutp_psrr}
+N 490 820 490 840 {lab=GND}
+N -30 650 80 650 {lab=#net3}
+N -30 730 80 730 {lab=#net3}
+N 420 690 490 690 {lab=voutp_psrr}
+N 220 790 220 850 {lab=#net4}
+N 220 910 220 930 {lab=GND}
+N -30 820 -30 850 {lab=GND}
+N -30 730 -30 760 {lab=#net3}
+N -30 650 -30 730 {lab=#net3}
+N 20 570 20 590 {lab=GND}
+N 20 480 20 510 {lab=vdd_ac}
+N 20 480 160 480 {lab=vdd_ac}
+N 160 480 160 590 {lab=vdd_ac}
+N 10 -540 10 -480 {lab=#net5}
+N 10 -420 10 -390 {lab=GND}
+N 150 -540 150 -380 {lab=#net5}
+N 10 -540 150 -540 {lab=#net5}
 C {capa.sym} 480 -180 0 0 {name=C2
 m=1
 value=100f
@@ -126,19 +164,20 @@ device="ceramic capacitor"}
 C {gnd.sym} -250 -60 0 0 {name=l10 lab=GND}
 C {lab_wire.sym} -250 -280 0 0 {name=p10 sig_type=std_logic lab=voutp}
 C {lab_wire.sym} -210 -160 0 1 {name=p13 sig_type=std_logic lab=vinm}
-C {code_shown.sym} -640 -860 0 0 {name=MODEL only_toplevel=false
+C {code_shown.sym} -640 -930 0 0 {name=MODEL only_toplevel=false
 format="tcleval( @value )"
 value="
 .lib cornerMOShv.lib mos_tt
 .lib $::SG13G2_MODELS/cornerCAP.lib cap_typ 
 "}
-C {code_shown.sym} -640 -780 0 0 {name=NGSPICE only_toplevel=false
+C {code_shown.sym} -640 -850 0 0 {name=NGSPICE only_toplevel=false
 value="
 .param temp=27
 .include two_stage_tb.save
 .control
 op
-save all   
+save all
+print i(V5)
 write two_stage_tb.raw
 set appendwrite #writing into the same raw file
 ac dec 100 1 100e6
@@ -147,6 +186,7 @@ save all
 let Av = db(v(voutp))
 let phase = 180/3.14*vp(voutp)
 let CMRR = db((v(voutp)/v(vinp))/(v(voutp_cmrr)/v(vinp)))
+let PSRR = db(v(voutp_psrr)/v(vdd_ac))
 
 echo "---"
 meas ac gm_db find vdb(voutp) when vp(voutp)=0
@@ -207,3 +247,21 @@ C {two_stage.sym} 180 230 0 0 {name=x2}
 C {gnd.sym} 220 450 0 0 {name=l7 lab=GND}
 C {isource.sym} 220 400 0 0 {name=I1 value=10u}
 C {lab_wire.sym} -30 250 0 0 {name=p6 sig_type=std_logic lab=vinp}
+C {capa.sym} 490 790 0 0 {name=C4
+m=1
+value=100f
+footprint=1206
+device="ceramic capacitor"}
+C {gnd.sym} 490 840 0 0 {name=l11 lab=GND}
+C {lab_wire.sym} 490 690 0 0 {name=p14 sig_type=std_logic lab=voutp_psrr}
+C {gnd.sym} 160 830 0 0 {name=l12 lab=GND}
+C {two_stage.sym} 180 710 0 0 {name=x3}
+C {gnd.sym} 220 930 0 0 {name=l13 lab=GND}
+C {isource.sym} 220 880 0 0 {name=I2 value=10u}
+C {vsource.sym} -30 790 0 0 {name=V1 value="DC 1.65" savecurrent=false}
+C {gnd.sym} -30 850 0 0 {name=l14 lab=GND}
+C {vsource.sym} 20 540 0 0 {name=V3 value="DC 3.30 AC 1.0" savecurrent=false}
+C {gnd.sym} 20 590 0 0 {name=l15 lab=GND}
+C {lab_wire.sym} 20 480 0 0 {name=p12 sig_type=std_logic lab=vdd_ac}
+C {vsource.sym} 10 -450 0 0 {name=V5 value="DC 3.3" savecurrent=false}
+C {gnd.sym} 10 -390 0 0 {name=l16 lab=GND}

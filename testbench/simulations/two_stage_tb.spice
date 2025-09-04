@@ -5,11 +5,17 @@ V2 vdd GND DC 3.3
 V4 vinp GND DC 1.65 AC 1.0
 L9 voutp vinm 4G m=1
 C3 vinm GND 4G m=1
-x1 vdd voutp vinp vinm GND net1 two_stage
+x1 net5 voutp vinp vinm GND net1 two_stage
 I0 net1 GND 10u
 C1 voutp_cmrr GND 100f m=1
 x2 vdd voutp_cmrr vinp vinp GND net2 two_stage
 I1 net2 GND 10u
+C4 voutp_psrr GND 100f m=1
+x3 vdd_ac voutp_psrr net3 net3 GND net4 two_stage
+I2 net4 GND 10u
+V1 net3 GND DC 1.65
+V3 vdd_ac GND DC 3.30 AC 1.0
+V5 net5 GND DC 3.3
 **** begin user architecture code
 
 .lib cornerMOShv.lib mos_tt
@@ -22,6 +28,7 @@ I1 net2 GND 10u
 .control
 op
 save all
+print i(V5)
 write two_stage_tb.raw
 set appendwrite #writing into the same raw file
 ac dec 100 1 100e6
@@ -30,15 +37,14 @@ save all
 let Av = db(v(voutp))
 let phase = 180/3.14*vp(voutp)
 let CMRR = db((v(voutp)/v(vinp))/(v(voutp_cmrr)/v(vinp)))
+let PSRR = db(v(voutp_psrr)/v(vdd_ac))
 
-echo ---
 echo ---
 meas ac gm_db find vdb(voutp) when vp(voutp)=0
 meas ac pm_deg find phase when vdb(voutp)=0
 meas ac _3db_f when phase=-45
 meas ac _0db_f when vdb(voutp)=0
 meas ac dc_gain find vdb(voutp) at=1
-echo ---
 echo ---
 
 write two_stage_tb.raw

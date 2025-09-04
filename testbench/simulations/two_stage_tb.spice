@@ -35,8 +35,8 @@ echo ---
 echo ---
 meas ac gm_db find vdb(voutp) when vp(voutp)=0
 meas ac pm_deg find phase when vdb(voutp)=0
-meas ac 3db_f when phase=-45
-meas ac 0db_f when vdb(voutp)=0
+meas ac _3db_f when phase=-45
+meas ac _0db_f when vdb(voutp)=0
 meas ac dc_gain find vdb(voutp) at=1
 echo ---
 echo ---
@@ -68,11 +68,11 @@ XM4 net4 vb_p net3 vdd sg13_hv_pmos w=1.3u l=1.0u ng=1 m=1
 XM6 net4 vb_n net6 vss sg13_hv_nmos w=0.370u l=2.0u ng=1 m=1
 XM7 net5 mirror vss vss sg13_hv_nmos w=0.370u l=2.0u ng=1 m=1
 XM8 net6 mirror vss vss sg13_hv_nmos w=0.370u l=2.0u ng=1 m=1
-XM9 out net4 vss vss sg13_hv_nmos w=2.35u l=5.00u ng=1 m=1
-XC1 net4 out cap_cmim w=10.0e-6 l=10.0e-6 m=1
-XM10 out iout vdd vdd sg13_hv_pmos w=8.5u l=5.0u ng=1 m=1
+XM9 out net4 vss vss sg13_hv_nmos w=2.0u l=1.00u ng=1 m=1
+XC1 net4 out cap_cmim w=14.0e-6 l=14.0e-6 m=1
+XM10 out iout vdd vdd sg13_hv_pmos w=8.0u l=1.0u ng=1 m=1
 V1 vb_p vss 1.0
-V2 vb_n vss 2.0
+V2 vb_n vss 1.6
 .ends
 
 .GLOBAL GND

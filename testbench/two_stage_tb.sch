@@ -149,13 +149,11 @@ let phase = 180/3.14*vp(voutp)
 let CMRR = db((v(voutp)/v(vinp))/(v(voutp_cmrr)/v(vinp)))
 
 echo "---"
-echo "---"
 meas ac gm_db find vdb(voutp) when vp(voutp)=0
 meas ac pm_deg find phase when vdb(voutp)=0
-meas ac 3db_f when phase=-45
-meas ac 0db_f when vdb(voutp)=0
+meas ac _3db_f when phase=-45
+meas ac _0db_f when vdb(voutp)=0
 meas ac dc_gain find vdb(voutp) at=1
-echo "---"
 echo "---"
 
 write two_stage_tb.raw

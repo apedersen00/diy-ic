@@ -179,8 +179,8 @@ C {lab_wire.sym} 300 290 0 1 {name=p13 sig_type=std_logic lab=vss}
 C {lab_wire.sym} -80 140 0 0 {name=p11 sig_type=std_logic lab=mirror}
 C {lab_wire.sym} 140 270 0 0 {name=p14 sig_type=std_logic lab=mirror}
 C {sg13g2_pr/sg13_hv_nmos.sym} 500 140 0 0 {name=M9
-l=5.00u
-w=2.35u
+l=1.00u
+w=2.0u
 ng=1
 m=1
 model=sg13_hv_nmos
@@ -188,13 +188,13 @@ spiceprefix=X
 }
 C {sg13g2_pr/cap_cmim.sym} 420 40 3 0 {name=C1
 model=cap_cmim
-w=10.0e-6
-l=10.0e-6
+w=14.0e-6
+l=14.0e-6
 m=1
 spiceprefix=X}
 C {sg13g2_pr/sg13_hv_pmos.sym} 500 -110 0 0 {name=M10
-l=5.0u
-w=8.5u
+l=1.0u
+w=8.0u
 ng=1
 m=1
 model=sg13_hv_pmos
@@ -211,7 +211,7 @@ C {ipin.sym} 40 380 3 0 {name=p24 lab=vss}
 C {vsource.sym} -300 250 0 0 {name=V1 value=1.0 savecurrent=false}
 C {lab_wire.sym} -300 180 3 1 {name=p3 sig_type=std_logic lab=vb_p}
 C {lab_wire.sym} -300 320 3 0 {name=p6 sig_type=std_logic lab=vss}
-C {vsource.sym} -220 250 0 0 {name=V2 value=2.0 savecurrent=false}
+C {vsource.sym} -220 250 0 0 {name=V2 value=1.6 savecurrent=false}
 C {lab_wire.sym} -220 180 3 1 {name=p7 sig_type=std_logic lab=vb_n}
 C {lab_wire.sym} -220 320 3 0 {name=p25 sig_type=std_logic lab=vss}
 C {sg13g2_pr/annotate_fet_params.sym} -740 -250 0 0 {name=annot5 ref=M5}

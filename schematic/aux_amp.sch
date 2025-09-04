@@ -180,7 +180,7 @@ spiceprefix=X
 }
 C {lab_wire.sym} -300 90 0 0 {name=p5 sig_type=std_logic lab=nbias}
 C {lab_wire.sym} -300 -150 0 0 {name=p6 sig_type=std_logic lab=pbias}
-C {sg13g2_pr/sg13_hv_nmos.sym} 720 90 0 0 {name=M2
+C {sg13g2_pr/sg13_hv_nmos.sym} 720 90 0 0 {name=M12
 l=0.45u
 w=0.3u
 ng=1

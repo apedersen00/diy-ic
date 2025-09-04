@@ -57,22 +57,22 @@ write aux_amp_tb.raw
 *.iopin vdd
 *.iopin voutp
 *.iopin vinm
-XM2 net3 vinp net1 net1 sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
-XM3 net4 cm_bias net1 net1 sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
-XM4 net1 nbias vss vss sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
-XM6 net3 cm_bias net2 net2 sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
-XM7 net4 vinm net2 net2 sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
-XM8 net2 nbias vss vss sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
-XM9 voutm nbias vss vss sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
-XM11 voutp nbias vss vss sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
+XM1 net3 vinp net1 net1 sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
+XM2 net4 cm_bias net1 net1 sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
+XM5 net1 nbias vss vss sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
+XM3 net3 cm_bias net2 net2 sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
+XM4 net4 vinm net2 net2 sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
+XM6 net2 nbias vss vss sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
+XM11 voutm nbias vss vss sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
+XM12 voutp nbias vss vss sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
 V2 pbias_top vss 1.65
 V3 pbias vss 1.65
 V4 cm_bias vss 1.65
 V1 nbias vss 1.65
-XM1 voutm pbias net3 net3 sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
-XM5 net3 pbias_top vdd vdd sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
-XM10 net4 pbias_top vdd vdd sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
-XM12 voutp pbias net4 net4 sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
+XM9 voutm pbias net3 net3 sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
+XM7 net3 pbias_top vdd vdd sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
+XM8 net4 pbias_top vdd vdd sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
+XM10 voutp pbias net4 net4 sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
 .ends
 
 .GLOBAL GND

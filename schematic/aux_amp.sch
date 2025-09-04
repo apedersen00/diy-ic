@@ -120,7 +120,7 @@ N -220 -120 -220 -30 {lab=voutm}
 N 740 -120 740 -30 {lab=voutp}
 N 240 -30 260 -30 {lab=cm_bias}
 N 100 160 260 160 {lab=vss}
-C {sg13g2_pr/sg13_hv_nmos.sym} -20 -30 0 0 {name=M2
+C {sg13g2_pr/sg13_hv_nmos.sym} -20 -30 0 0 {name=M1
 l=0.45u
 w=0.3u
 ng=1
@@ -128,7 +128,7 @@ m=1
 model=sg13_hv_nmos
 spiceprefix=X
 }
-C {sg13g2_pr/sg13_hv_nmos.sym} 220 -30 0 1 {name=M3
+C {sg13g2_pr/sg13_hv_nmos.sym} 220 -30 0 1 {name=M2
 l=0.45u
 w=0.3u
 ng=1
@@ -136,7 +136,7 @@ m=1
 model=sg13_hv_nmos
 spiceprefix=X
 }
-C {sg13g2_pr/sg13_hv_nmos.sym} 80 90 0 0 {name=M4
+C {sg13g2_pr/sg13_hv_nmos.sym} 80 90 0 0 {name=M5
 l=0.45u
 w=0.3u
 ng=1
@@ -144,7 +144,7 @@ m=1
 model=sg13_hv_nmos
 spiceprefix=X
 }
-C {sg13g2_pr/sg13_hv_nmos.sym} 300 -30 0 0 {name=M6
+C {sg13g2_pr/sg13_hv_nmos.sym} 300 -30 0 0 {name=M3
 l=0.45u
 w=0.3u
 ng=1
@@ -152,7 +152,7 @@ m=1
 model=sg13_hv_nmos
 spiceprefix=X
 }
-C {sg13g2_pr/sg13_hv_nmos.sym} 540 -30 0 1 {name=M7
+C {sg13g2_pr/sg13_hv_nmos.sym} 540 -30 0 1 {name=M4
 l=0.45u
 w=0.3u
 ng=1
@@ -160,7 +160,7 @@ m=1
 model=sg13_hv_nmos
 spiceprefix=X
 }
-C {sg13g2_pr/sg13_hv_nmos.sym} 400 90 0 0 {name=M8
+C {sg13g2_pr/sg13_hv_nmos.sym} 400 90 0 0 {name=M6
 l=0.45u
 w=0.3u
 ng=1
@@ -170,7 +170,7 @@ spiceprefix=X
 }
 C {lab_wire.sym} 340 90 0 0 {name=p1 sig_type=std_logic lab=nbias}
 C {lab_wire.sym} 20 90 0 0 {name=p2 sig_type=std_logic lab=nbias}
-C {sg13g2_pr/sg13_hv_nmos.sym} -240 90 0 0 {name=M9
+C {sg13g2_pr/sg13_hv_nmos.sym} -240 90 0 0 {name=M11
 l=0.45u
 w=0.3u
 ng=1
@@ -180,7 +180,7 @@ spiceprefix=X
 }
 C {lab_wire.sym} -300 90 0 0 {name=p5 sig_type=std_logic lab=nbias}
 C {lab_wire.sym} -300 -150 0 0 {name=p6 sig_type=std_logic lab=pbias}
-C {sg13g2_pr/sg13_hv_nmos.sym} 720 90 0 0 {name=M11
+C {sg13g2_pr/sg13_hv_nmos.sym} 720 90 0 0 {name=M2
 l=0.45u
 w=0.3u
 ng=1
@@ -206,7 +206,7 @@ C {lab_wire.sym} -520 30 3 1 {name=p22 sig_type=std_logic lab=pbias_top}
 C {lab_wire.sym} -600 30 3 1 {name=p23 sig_type=std_logic lab=pbias}
 C {lab_wire.sym} -680 30 3 1 {name=p24 sig_type=std_logic lab=nbias}
 C {vsource.sym} -680 110 0 0 {name=V1 value=1.65 savecurrent=false}
-C {sg13g2_pr/sg13_hv_pmos.sym} -240 -150 0 0 {name=M1
+C {sg13g2_pr/sg13_hv_pmos.sym} -240 -150 0 0 {name=M9
 l=0.4u
 w=0.3u
 ng=1
@@ -214,7 +214,7 @@ m=1
 model=sg13_hv_pmos
 spiceprefix=X
 }
-C {sg13g2_pr/sg13_hv_pmos.sym} 30 -330 0 1 {name=M5
+C {sg13g2_pr/sg13_hv_pmos.sym} 30 -330 0 1 {name=M7
 l=0.4u
 w=0.3u
 ng=1
@@ -222,7 +222,7 @@ m=1
 model=sg13_hv_pmos
 spiceprefix=X
 }
-C {sg13g2_pr/sg13_hv_pmos.sym} 500 -330 0 0 {name=M10
+C {sg13g2_pr/sg13_hv_pmos.sym} 500 -330 0 0 {name=M8
 l=0.4u
 w=0.3u
 ng=1
@@ -230,7 +230,7 @@ m=1
 model=sg13_hv_pmos
 spiceprefix=X
 }
-C {sg13g2_pr/sg13_hv_pmos.sym} 720 -150 0 0 {name=M12
+C {sg13g2_pr/sg13_hv_pmos.sym} 720 -150 0 0 {name=M10
 l=0.4u
 w=0.3u
 ng=1

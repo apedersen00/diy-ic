@@ -147,7 +147,7 @@ spiceprefix=X
 }
 C {sg13g2_pr/sg13_hv_nmos.sym} 80 90 0 0 {name=M5
 l=10.0u
-w=29.0u
+w=60.0u
 ng=8
 m=1
 model=sg13_hv_nmos
@@ -171,7 +171,7 @@ spiceprefix=X
 }
 C {sg13g2_pr/sg13_hv_nmos.sym} 400 90 0 0 {name=M6
 l=10.0u
-w=29.0u
+w=60.0u
 ng=8
 m=1
 model=sg13_hv_nmos

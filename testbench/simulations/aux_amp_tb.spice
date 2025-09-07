@@ -1,16 +1,14 @@
 ** sch_path: /home/andre/diy-ic/testbench/aux_amp_tb.sch
 **.subckt aux_amp_tb
-C2 voutp GND 100f m=1
+C2 voutp GND 500f m=1
 V2 vdd GND DC 3.3
-L9 voutm vinp 4G m=1
-C3 vinp GND 4G m=1
 x2 vdd vinm vinp voutp voutm GND aux_amp
-C1 voutm GND 100f m=1
-L2 voutp vinm 4G m=1
-C4 vinm GND 4G m=1
+C1 voutm GND 500f m=1
 V1 net1 vinp DC 0 AC 0.5
 V3 vinm net1 DC 0 AC 0.5
 V4 net1 GND DC 1.65
+L2 voutp vinm 4G m=1
+L7 voutm vinp 4G m=1
 **** begin user architecture code
 
 .lib cornerMOShv.lib mos_tt
@@ -33,20 +31,20 @@ tran 10u 10m
 save all
 
 * --- AC Sweep ---
-ac dec 100 1 100e6
+ac dec 100 10 100e6
 save all
 
 let Av = db(v(voutp))
-let phase = 180/3.14*vp(voutp) + 180
+let Phase = 180/3.14*vp(voutp) - 180
 let CMRR = db((v(voutp)/v(vinp))/(v(voutp_cmrr)/v(vinp)))
 let PSRR = db(v(voutp_psrr)/v(vdd_ac))
 
 echo ---
 meas ac gm_db find vdb(voutp) when vp(voutp)=0
-meas ac pm_deg find phase when vdb(voutp)=0
-meas ac _3db_f when phase=-45
+meas ac pm_deg find Phase when vdb(voutp)=0
+meas ac _3db_f when Phase=-45
 meas ac _0db_f when vdb(voutp)=0
-meas ac dc_gain find vdb(voutp) at=1
+meas ac dc_gain find vdb(voutp) at=10
 echo ---
 
 write aux_amp_tb.raw
@@ -68,10 +66,10 @@ write aux_amp_tb.raw
 *.iopin vinm
 XM1 net3 vinp net1 net1 sg13_hv_nmos w=80.0u l=10.0u ng=8 m=1
 XM2 net4 cm_bias net1 net1 sg13_hv_nmos w=80.0u l=10.0u ng=8 m=1
-XM5 net1 nbias vss vss sg13_hv_nmos w=29.0u l=10.0u ng=8 m=1
+XM5 net1 nbias vss vss sg13_hv_nmos w=60.0u l=10.0u ng=8 m=1
 XM3 net3 cm_bias net2 net2 sg13_hv_nmos w=80.0u l=10.0u ng=8 m=1
 XM4 net4 vinm net2 net2 sg13_hv_nmos w=80.0u l=10.0u ng=8 m=1
-XM6 net2 nbias vss vss sg13_hv_nmos w=29.0u l=10.0u ng=8 m=1
+XM6 net2 nbias vss vss sg13_hv_nmos w=60.0u l=10.0u ng=8 m=1
 XM11 voutm nbias vss vss sg13_hv_nmos w=29.0u l=10.0u ng=8 m=1
 XM12 voutp nbias vss vss sg13_hv_nmos w=29.0u l=10.0u ng=8 m=1
 V3 pbias vss 1.80

@@ -5,8 +5,8 @@ V {}
 S {}
 E {}
 B 2 560 -550 1360 -150 {flags=graph
-y1=-2.6
-y2=55
+y1=-13
+y2=61
 ypos1=0
 ypos2=2
 divy=5
@@ -33,8 +33,8 @@ ypos2=2
 divy=5
 subdivy=4
 unity=1
-x1=-0.4
-x2=7.6
+x1=0
+x2=8
 divx=5
 subdivx=8
 xlabmag=1.0
@@ -75,8 +75,8 @@ ypos2=2
 divy=5
 subdivy=4
 unity=1
-x1=-0.4
-x2=7.6
+x1=0
+x2=8
 divx=5
 subdivx=8
 xlabmag=1.0
@@ -94,24 +94,14 @@ N -140 -230 -140 -190 {lab=GND}
 N 270 -320 270 -250 {lab=voutp}
 N 270 -190 270 -170 {lab=GND}
 N -300 -270 -190 -270 {lab=vinp}
-N -980 -130 -980 -10 {lab=GND}
-N -980 -210 -980 -190 {lab=vinp}
-N -980 -210 -940 -210 {lab=vinp}
-N -980 -330 -980 -290 {lab=voutm}
 N -1130 -360 -1130 -300 {lab=vdd}
 N -1130 -240 -1130 -210 {lab=GND}
-N -980 -230 -980 -210 {lab=vinp}
 N -300 -320 -190 -320 {lab=vinm}
 N 210 -280 210 -210 {lab=voutm}
 N 210 -150 210 -130 {lab=GND}
 N 90 -320 270 -320 {lab=voutp}
 N 90 -280 210 -280 {lab=voutm}
 N -140 -410 -140 -370 {lab=vdd}
-N -840 -130 -840 -30 {lab=GND}
-N -840 -210 -840 -190 {lab=vinm}
-N -840 -210 -800 -210 {lab=vinm}
-N -840 -330 -840 -290 {lab=voutp}
-N -840 -230 -840 -210 {lab=vinm}
 N -590 -240 -590 -220 {lab=#net1}
 N -680 -240 -590 -240 {lab=#net1}
 N -590 -260 -590 -240 {lab=#net1}
@@ -119,9 +109,17 @@ N -680 -240 -680 -180 {lab=#net1}
 N -680 -120 -680 -90 {lab=GND}
 N -590 -380 -590 -320 {lab=vinm}
 N -590 -160 -590 -100 {lab=vinp}
+N -340 -80 -340 -40 {lab=voutp}
+N -340 20 -340 70 {lab=vinm}
+N -340 70 -280 70 {lab=vinm}
+N -340 70 -340 140 {lab=vinm}
+N -200 -80 -200 -40 {lab=voutm}
+N -200 20 -200 70 {lab=vinp}
+N -200 70 -140 70 {lab=vinp}
+N -200 70 -200 140 {lab=vinp}
 C {capa.sym} 270 -220 0 0 {name=C2
 m=1
-value=100f
+value=500f
 footprint=1206
 device="ceramic capacitor"}
 C {gnd.sym} 270 -170 0 0 {name=l3 lab=GND}
@@ -132,18 +130,6 @@ C {vsource.sym} -1130 -270 0 0 {name=V2 value="DC 3.3" savecurrent=false}
 C {gnd.sym} -1130 -210 0 0 {name=l6 lab=GND}
 C {lab_wire.sym} -300 -320 0 0 {name=p7 sig_type=std_logic lab=vinm}
 C {lab_wire.sym} -300 -270 0 0 {name=p8 sig_type=std_logic lab=vinp}
-C {ind.sym} -980 -260 0 0 {name=L9
-m=1
-value=4G
-footprint=1206
-device=inductor}
-C {capa.sym} -980 -160 0 0 {name=C3
-m=1
-value=4G
-footprint=1206
-device="ceramic capacitor"}
-C {lab_wire.sym} -980 -330 0 0 {name=p10 sig_type=std_logic lab=voutm}
-C {lab_wire.sym} -940 -210 0 1 {name=p13 sig_type=std_logic lab=vinp}
 C {code_shown.sym} -1080 -1150 0 0 {name=MODEL only_toplevel=false
 format="tcleval( @value )"
 value="
@@ -167,20 +153,20 @@ tran 10u 10m
 save all
 
 * --- AC Sweep ---
-ac dec 100 1 100e6
+ac dec 100 10 100e6
 save all
 
 let Av = db(v(voutp))
-let phase = 180/3.14*vp(voutp) + 180
+let Phase = 180/3.14*vp(voutp) - 180
 let CMRR = db((v(voutp)/v(vinp))/(v(voutp_cmrr)/v(vinp)))
 let PSRR = db(v(voutp_psrr)/v(vdd_ac))
 
 echo "---"
 meas ac gm_db find vdb(voutp) when vp(voutp)=0
-meas ac pm_deg find phase when vdb(voutp)=0
-meas ac _3db_f when phase=-45
+meas ac pm_deg find Phase when vdb(voutp)=0
+meas ac _3db_f when Phase=-45
 meas ac _0db_f when vdb(voutp)=0
-meas ac dc_gain find vdb(voutp) at=1
+meas ac dc_gain find vdb(voutp) at=10
 echo "---"
 
 write aux_amp_tb.raw
@@ -220,29 +206,31 @@ simulate
 C {aux_amp.sym} -50 -180 0 0 {name=x2}
 C {capa.sym} 210 -180 0 0 {name=C1
 m=1
-value=100f
+value=500f
 footprint=1206
 device="ceramic capacitor"}
 C {gnd.sym} 210 -130 0 0 {name=l1 lab=GND}
 C {lab_wire.sym} 210 -280 0 0 {name=p1 sig_type=std_logic lab=voutm}
 C {lab_wire.sym} -140 -410 0 0 {name=p3 sig_type=std_logic lab=vdd}
-C {ind.sym} -840 -260 0 0 {name=L2
-m=1
-value=4G
-footprint=1206
-device=inductor}
-C {capa.sym} -840 -160 0 0 {name=C4
-m=1
-value=4G
-footprint=1206
-device="ceramic capacitor"}
-C {lab_wire.sym} -840 -330 0 0 {name=p5 sig_type=std_logic lab=voutp}
-C {lab_wire.sym} -800 -210 0 1 {name=p6 sig_type=std_logic lab=vinm}
 C {vsource.sym} -590 -190 0 0 {name=V1 value="DC 0 AC 0.5" savecurrent=false}
-C {gnd.sym} -980 -10 0 0 {name=l7 lab=GND}
 C {vsource.sym} -590 -290 0 0 {name=V3 value="DC 0 AC 0.5" savecurrent=false}
-C {gnd.sym} -840 -30 0 0 {name=l4 lab=GND}
 C {vsource.sym} -680 -150 0 0 {name=V4 value="DC 1.65" savecurrent=false}
 C {gnd.sym} -680 -90 0 0 {name=l8 lab=GND}
 C {lab_wire.sym} -590 -100 0 0 {name=p9 sig_type=std_logic lab=vinp}
 C {lab_wire.sym} -590 -380 0 0 {name=p11 sig_type=std_logic lab=vinm}
+C {lab_wire.sym} -340 -80 0 0 {name=p5 sig_type=std_logic lab=voutp}
+C {ind.sym} -340 -10 0 0 {name=L2
+m=1
+value=4G
+footprint=1206
+device=inductor}
+C {lab_wire.sym} -280 70 0 1 {name=p6 sig_type=std_logic lab=vinm}
+C {gnd.sym} -340 140 0 0 {name=l4 lab=GND}
+C {lab_wire.sym} -200 -80 0 0 {name=p10 sig_type=std_logic lab=voutm}
+C {ind.sym} -200 -10 0 0 {name=L7
+m=1
+value=4G
+footprint=1206
+device=inductor}
+C {lab_wire.sym} -140 70 0 1 {name=p12 sig_type=std_logic lab=vinp}
+C {gnd.sym} -200 140 0 0 {name=l9 lab=GND}

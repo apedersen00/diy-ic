@@ -114,65 +114,65 @@ N -220 -120 -220 -30 {lab=voutm}
 N 740 -120 740 -30 {lab=voutp}
 N 240 -30 260 -30 {lab=cm_bias}
 N 100 160 260 160 {lab=vss}
-N -670 400 -650 400 {lab=vss}
-N -670 400 -670 450 {lab=vss}
-N -650 430 -650 450 {lab=vss}
-N -670 450 -650 450 {lab=vss}
-N -650 450 -650 480 {lab=vss}
-N -610 400 -580 400 {lab=nbias}
-N -580 340 -580 400 {lab=nbias}
-N -650 340 -650 370 {lab=nbias}
-N -650 340 -580 340 {lab=nbias}
-N -650 320 -650 340 {lab=nbias}
-N -650 220 -650 260 {lab=vdd}
-N -580 400 -530 400 {lab=nbias}
-N -520 30 -520 80 {lab=pbias}
+N -510 420 -490 420 {lab=vss}
+N -510 420 -510 470 {lab=vss}
+N -490 450 -490 470 {lab=vss}
+N -510 470 -490 470 {lab=vss}
+N -490 470 -490 500 {lab=vss}
+N -450 420 -420 420 {lab=nbias}
+N -420 360 -420 420 {lab=nbias}
+N -490 360 -490 390 {lab=nbias}
+N -490 360 -420 360 {lab=nbias}
+N -490 340 -490 360 {lab=nbias}
+N -490 240 -490 280 {lab=vdd}
+N -420 420 -370 420 {lab=nbias}
+N -520 30 -520 80 {lab=pbias_top}
 N -520 140 -520 160 {lab=vss}
 N -600 160 -520 160 {lab=vss}
 C {sg13g2_pr/sg13_hv_nmos.sym} -20 -30 0 0 {name=M1
 l=10.0u
-w=12.0u
-ng=4
+w=80.0u
+ng=8
 m=1
 model=sg13_hv_nmos
 spiceprefix=X
 }
 C {sg13g2_pr/sg13_hv_nmos.sym} 220 -30 0 1 {name=M2
 l=10.0u
-w=12.0u
-ng=4
+w=80.0u
+ng=8
 m=1
 model=sg13_hv_nmos
 spiceprefix=X
 }
 C {sg13g2_pr/sg13_hv_nmos.sym} 80 90 0 0 {name=M5
-l=1.0u
-w=2.0u
-ng=1
+l=10.0u
+w=29.0u
+ng=8
 m=1
 model=sg13_hv_nmos
 spiceprefix=X
 }
 C {sg13g2_pr/sg13_hv_nmos.sym} 300 -30 0 0 {name=M3
 l=10.0u
-w=12.0u
-ng=4
+w=80.0u
+ng=8
 m=1
 model=sg13_hv_nmos
 spiceprefix=X
 }
 C {sg13g2_pr/sg13_hv_nmos.sym} 540 -30 0 1 {name=M4
 l=10.0u
-w=12.0u
-ng=4
+w=80.0u
+ng=8
 m=1
 model=sg13_hv_nmos
 spiceprefix=X
 }
 C {sg13g2_pr/sg13_hv_nmos.sym} 400 90 0 0 {name=M6
-l=1.0u
-w=2.0u
-ng=1
+l=10.0u
+w=29.0u
+ng=8
 m=1
 model=sg13_hv_nmos
 spiceprefix=X
@@ -180,9 +180,9 @@ spiceprefix=X
 C {lab_wire.sym} 340 90 0 0 {name=p1 sig_type=std_logic lab=nbias}
 C {lab_wire.sym} 20 90 0 0 {name=p2 sig_type=std_logic lab=nbias}
 C {sg13g2_pr/sg13_hv_nmos.sym} -240 90 0 0 {name=M11
-l=0.45u
-w=0.3u
-ng=1
+l=10.0u
+w=29.0u
+ng=8
 m=1
 model=sg13_hv_nmos
 spiceprefix=X
@@ -190,9 +190,9 @@ spiceprefix=X
 C {lab_wire.sym} -300 90 0 0 {name=p5 sig_type=std_logic lab=nbias}
 C {lab_wire.sym} -300 -150 0 0 {name=p6 sig_type=std_logic lab=pbias}
 C {sg13g2_pr/sg13_hv_nmos.sym} 720 90 0 0 {name=M12
-l=0.45u
-w=0.3u
-ng=1
+l=10.0u
+w=29.0u
+ng=8
 m=1
 model=sg13_hv_nmos
 spiceprefix=X
@@ -206,15 +206,15 @@ C {iopin.sym} 280 -440 3 0 {name=p4 lab=vdd}
 C {iopin.sym} 760 -30 2 1 {name=p11 lab=voutp}
 C {iopin.sym} 600 -30 2 1 {name=p10 lab=vinm}
 C {lab_wire.sym} 270 -330 0 0 {name=p3 sig_type=std_logic lab=pbias_top}
-C {vsource.sym} -600 110 0 0 {name=V3 value=1.65 savecurrent=false}
+C {vsource.sym} -600 110 0 0 {name=V3 value=1.80 savecurrent=false}
 C {vsource.sym} -440 110 0 0 {name=V4 value=1.65 savecurrent=false}
 C {lab_wire.sym} 260 -70 0 0 {name=p13 sig_type=std_logic lab=cm_bias}
 C {lab_wire.sym} -440 30 3 1 {name=p21 sig_type=std_logic lab=cm_bias}
 C {lab_wire.sym} -600 30 3 1 {name=p23 sig_type=std_logic lab=pbias}
 C {sg13g2_pr/sg13_hv_pmos.sym} -240 -150 0 0 {name=M9
-l=0.4u
-w=0.3u
-ng=1
+l=2.0u
+w=15.0u
+ng=8
 m=1
 model=sg13_hv_pmos
 spiceprefix=X
@@ -236,9 +236,9 @@ model=sg13_hv_pmos
 spiceprefix=X
 }
 C {sg13g2_pr/sg13_hv_pmos.sym} 720 -150 0 0 {name=M10
-l=0.4u
-w=0.3u
-ng=1
+l=2.0u
+w=15.0u
+ng=8
 m=1
 model=sg13_hv_pmos
 spiceprefix=X
@@ -255,17 +255,17 @@ C {sg13g2_pr/annotate_fet_params.sym} -860 -310 0 0 {name=annot9 ref=M9}
 C {sg13g2_pr/annotate_fet_params.sym} -740 -310 0 0 {name=annot10 ref=M10}
 C {sg13g2_pr/annotate_fet_params.sym} -620 -310 0 0 {name=annot11 ref=M11}
 C {sg13g2_pr/annotate_fet_params.sym} -500 -310 0 0 {name=annot12 ref=M12}
-C {sg13g2_pr/sg13_hv_nmos.sym} -630 400 0 1 {name=M14
-l=1.0u
-w=2.0u
-ng=1
+C {sg13g2_pr/sg13_hv_nmos.sym} -470 420 0 1 {name=M14
+l=10.0u
+w=29.0u
+ng=8
 m=1
 model=sg13_hv_nmos
 spiceprefix=X
 }
-C {lab_wire.sym} -650 480 0 0 {name=p17 sig_type=std_logic lab=vss}
-C {isource.sym} -650 290 0 0 {name=I1 value=50u}
-C {lab_wire.sym} -650 220 0 0 {name=p19 sig_type=std_logic lab=vdd}
-C {lab_wire.sym} -530 400 0 1 {name=p20 sig_type=std_logic lab=nbias}
-C {vsource.sym} -520 110 0 0 {name=V1 value=1.65 savecurrent=false}
+C {lab_wire.sym} -490 500 0 0 {name=p17 sig_type=std_logic lab=vss}
+C {isource.sym} -490 310 0 0 {name=I1 value=1.0u}
+C {lab_wire.sym} -490 240 0 0 {name=p19 sig_type=std_logic lab=vdd}
+C {vsource.sym} -520 110 0 0 {name=V1 value=2.2 savecurrent=false}
 C {lab_wire.sym} -520 30 3 1 {name=p22 sig_type=std_logic lab=pbias_top}
+C {lab_wire.sym} -370 420 0 0 {name=p20 sig_type=std_logic lab=nbias}

@@ -2,14 +2,15 @@
 **.subckt aux_amp_tb
 C2 voutp GND 100f m=1
 V2 vdd GND DC 3.3
-V4 vinp GND DC 1.65 AC 1.0
-L9 voutp vinp 4G m=1
+L9 voutm vinp 4G m=1
 C3 vinp GND 4G m=1
 x2 vdd vinm vinp voutp voutm GND aux_amp
 C1 voutm GND 100f m=1
-L2 voutm vinm 4G m=1
+L2 voutp vinm 4G m=1
 C4 vinm GND 4G m=1
-V1 vinm GND DC 1.65 AC -1.0
+V1 net1 vinp DC 0 AC 0.5
+V3 vinm net1 DC 0 AC 0.5
+V4 net1 GND DC 1.65
 **** begin user architecture code
 
 .lib cornerMOShv.lib mos_tt
@@ -20,15 +21,23 @@ V1 vinm GND DC 1.65 AC -1.0
 .param temp=27
 .include aux_amp_tb.save
 .control
+
+* --- OP ---
 op
 save all
 write aux_amp_tb.raw
-set appendwrite #writing into the same raw file
+set appendwrite
+
+* --- DC Sweep ---
+tran 10u 10m
+save all
+
+* --- AC Sweep ---
 ac dec 100 1 100e6
 save all
 
 let Av = db(v(voutp))
-let phase = 180/3.14*vp(voutp)
+let phase = 180/3.14*vp(voutp) + 180
 let CMRR = db((v(voutp)/v(vinp))/(v(voutp_cmrr)/v(vinp)))
 let PSRR = db(v(voutp_psrr)/v(vdd_ac))
 
@@ -57,22 +66,23 @@ write aux_amp_tb.raw
 *.iopin vdd
 *.iopin voutp
 *.iopin vinm
-XM1 net3 vinp net1 net1 sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
-XM2 net4 cm_bias net1 net1 sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
-XM5 net1 nbias vss vss sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
-XM3 net3 cm_bias net2 net2 sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
-XM4 net4 vinm net2 net2 sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
-XM6 net2 nbias vss vss sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
-XM11 voutm nbias vss vss sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
-XM12 voutp nbias vss vss sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
-V2 pbias_top vss 1.65
-V3 pbias vss 1.65
+XM1 net3 vinp net1 net1 sg13_hv_nmos w=80.0u l=10.0u ng=8 m=1
+XM2 net4 cm_bias net1 net1 sg13_hv_nmos w=80.0u l=10.0u ng=8 m=1
+XM5 net1 nbias vss vss sg13_hv_nmos w=29.0u l=10.0u ng=8 m=1
+XM3 net3 cm_bias net2 net2 sg13_hv_nmos w=80.0u l=10.0u ng=8 m=1
+XM4 net4 vinm net2 net2 sg13_hv_nmos w=80.0u l=10.0u ng=8 m=1
+XM6 net2 nbias vss vss sg13_hv_nmos w=29.0u l=10.0u ng=8 m=1
+XM11 voutm nbias vss vss sg13_hv_nmos w=29.0u l=10.0u ng=8 m=1
+XM12 voutp nbias vss vss sg13_hv_nmos w=29.0u l=10.0u ng=8 m=1
+V3 pbias vss 1.80
 V4 cm_bias vss 1.65
-V1 nbias vss 1.65
-XM9 voutm pbias net3 net3 sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
-XM7 net3 pbias_top vdd vdd sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
-XM8 net4 pbias_top vdd vdd sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
-XM10 voutp pbias net4 net4 sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
+XM9 voutm pbias net3 net3 sg13_hv_pmos w=15.0u l=2.0u ng=8 m=1
+XM7 net3 pbias_top vdd vdd sg13_hv_pmos w=4.0u l=1.0u ng=1 m=1
+XM8 net4 pbias_top vdd vdd sg13_hv_pmos w=4.0u l=1.0u ng=1 m=1
+XM10 voutp pbias net4 net4 sg13_hv_pmos w=15.0u l=2.0u ng=8 m=1
+XM14 nbias nbias vss vss sg13_hv_nmos w=29.0u l=10.0u ng=8 m=1
+I1 vdd nbias 1.0u
+V1 pbias_top vss 2.2
 .ends
 
 .GLOBAL GND

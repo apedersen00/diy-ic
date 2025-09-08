@@ -5,14 +5,14 @@ V {}
 S {}
 E {}
 B 2 560 -550 1360 -150 {flags=graph
-y1=-15.569444
-y2=58.430556
+y1=-17
+y2=-12
 ypos1=0
 ypos2=2
 divy=5
 subdivy=4
 unity=1
-x1=0
+x1=1
 x2=8
 divx=5
 subdivx=8

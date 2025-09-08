@@ -31,28 +31,27 @@ V3 A2_cm vss 1.65
 * expanding   symbol:  aux_amp.sym # of pins=7
 ** sym_path: /home/andre/diy-ic/schematic/aux_amp.sym
 ** sch_path: /home/andre/diy-ic/schematic/aux_amp.sch
-.subckt aux_amp vdd vinm vi+ voutp voutm vss cm_in
+.subckt aux_amp vdd vi- vi+ vo+ vo- vss cm_in
 *.iopin vss
-*.iopin voutm
-*.iopin vinp
+*.iopin vo-
 *.iopin vdd
-*.iopin voutp
-*.iopin vinm
-*.iopin vinp
+*.iopin vo+
+*.iopin vi-
+*.iopin vi+
 *.iopin cm_in
-XM1 net3 vinp net1 net1 sg13_hv_nmos w=80.0u l=10.0u ng=8 m=1
+XM1 net3 vi+ net1 net1 sg13_hv_nmos w=80.0u l=10.0u ng=8 m=1
 XM2 net4 cm_in net1 net1 sg13_hv_nmos w=80.0u l=10.0u ng=8 m=1
 XM5 net1 nbias vss vss sg13_hv_nmos w=60.0u l=10.0u ng=8 m=1
 XM3 net3 cm_in net2 net2 sg13_hv_nmos w=80.0u l=10.0u ng=8 m=1
-XM4 net4 vinm net2 net2 sg13_hv_nmos w=80.0u l=10.0u ng=8 m=1
+XM4 net4 vi- net2 net2 sg13_hv_nmos w=80.0u l=10.0u ng=8 m=1
 XM6 net2 nbias vss vss sg13_hv_nmos w=60.0u l=10.0u ng=8 m=1
-XM11 voutm nbias vss vss sg13_hv_nmos w=29.0u l=10.0u ng=8 m=1
-XM12 voutp nbias vss vss sg13_hv_nmos w=29.0u l=10.0u ng=8 m=1
+XM11 vo- nbias vss vss sg13_hv_nmos w=29.0u l=10.0u ng=8 m=1
+XM12 vo+ nbias vss vss sg13_hv_nmos w=29.0u l=10.0u ng=8 m=1
 V3 pbias vss 1.80
-XM9 voutm pbias net3 net3 sg13_hv_pmos w=15.0u l=2.0u ng=8 m=1
+XM9 vo- pbias net3 net3 sg13_hv_pmos w=15.0u l=2.0u ng=8 m=1
 XM7 net3 pbias_top vdd vdd sg13_hv_pmos w=4.0u l=1.0u ng=1 m=1
 XM8 net4 pbias_top vdd vdd sg13_hv_pmos w=4.0u l=1.0u ng=1 m=1
-XM10 voutp pbias net4 net4 sg13_hv_pmos w=15.0u l=2.0u ng=8 m=1
+XM10 vo+ pbias net4 net4 sg13_hv_pmos w=15.0u l=2.0u ng=8 m=1
 XM14 nbias nbias vss vss sg13_hv_nmos w=29.0u l=10.0u ng=8 m=1
 I1 vdd nbias 1.0u
 V1 pbias_top vss 2.2

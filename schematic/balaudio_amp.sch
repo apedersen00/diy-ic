@@ -98,32 +98,32 @@ N 310 130 400 130 {lab=vss}
 N 100 30 200 30 {lab=vdd}
 N 100 -10 100 30 {lab=vdd}
 N -0 30 100 30 {lab=vdd}
-N -540 -280 -520 -280 {lab=vdd}
-N -540 -330 -540 -280 {lab=vdd}
-N -540 -330 -520 -330 {lab=vdd}
-N -520 -330 -520 -310 {lab=vdd}
-N -520 -380 -520 -330 {lab=vdd}
-N -480 -280 -460 -280 {lab=vb_tail}
-N -460 -280 -460 -220 {lab=vb_tail}
-N -520 -220 -460 -220 {lab=vb_tail}
-N -520 -250 -520 -220 {lab=vb_tail}
-N -520 -140 -520 -80 {lab=vss}
-N -520 -220 -520 -200 {lab=vb_tail}
-N -460 -280 -380 -280 {lab=vb_tail}
+N -720 600 -700 600 {lab=vdd}
+N -720 550 -720 600 {lab=vdd}
+N -720 550 -700 550 {lab=vdd}
+N -700 550 -700 570 {lab=vdd}
+N -700 500 -700 550 {lab=vdd}
+N -660 600 -640 600 {lab=vb_tail}
+N -640 600 -640 660 {lab=vb_tail}
+N -700 660 -640 660 {lab=vb_tail}
+N -700 630 -700 660 {lab=vb_tail}
+N -700 740 -700 800 {lab=vss}
+N -700 660 -700 680 {lab=vb_tail}
+N -640 600 -560 600 {lab=vb_tail}
 N -700 -140 -700 -80 {lab=vss}
 N -700 -260 -700 -200 {lab=vb_p}
-N -180 -180 -160 -180 {lab=vss}
-N -160 -180 -160 -140 {lab=vss}
-N -180 -140 -160 -140 {lab=vss}
-N -180 -150 -180 -140 {lab=vss}
-N -240 -180 -220 -180 {lab=nmirror}
-N -240 -230 -240 -180 {lab=nmirror}
-N -240 -230 -180 -230 {lab=nmirror}
-N -180 -230 -180 -210 {lab=nmirror}
-N -180 -250 -180 -230 {lab=nmirror}
-N -180 -360 -180 -310 {lab=vdd}
-N -180 -140 -180 -80 {lab=vss}
-N -320 -180 -240 -180 {lab=nmirror}
+N -360 700 -340 700 {lab=vss}
+N -340 700 -340 740 {lab=vss}
+N -360 740 -340 740 {lab=vss}
+N -360 730 -360 740 {lab=vss}
+N -420 700 -400 700 {lab=nmirror}
+N -420 650 -420 700 {lab=nmirror}
+N -420 650 -360 650 {lab=nmirror}
+N -360 650 -360 670 {lab=nmirror}
+N -360 630 -360 650 {lab=nmirror}
+N -360 520 -360 570 {lab=vdd}
+N -360 740 -360 800 {lab=vss}
+N -500 700 -420 700 {lab=nmirror}
 N -700 100 -700 160 {lab=vss}
 N -700 -20 -700 40 {lab=A1_cm}
 N -700 340 -700 400 {lab=vss}
@@ -250,7 +250,7 @@ C {iopin.sym} -60 30 2 0 {name=p30 lab=vi-}
 C {lab_wire.sym} 0 -110 0 1 {name=p31 sig_type=std_logic lab=vb_tail}
 C {iopin.sym} 440 60 0 0 {name=p32 lab=vo-}
 C {iopin.sym} 600 60 0 1 {name=p33 lab=vo+}
-C {sg13g2_pr/sg13_hv_pmos.sym} -500 -280 0 1 {name=M12
+C {sg13g2_pr/sg13_hv_pmos.sym} -680 600 0 1 {name=M12
 l=0.4u
 w=0.3u
 ng=1
@@ -263,14 +263,14 @@ C {lab_wire.sym} 730 130 0 0 {name=p36 sig_type=std_logic lab=vss}
 C {lab_wire.sym} 310 -10 0 1 {name=p37 sig_type=std_logic lab=vdd}
 C {lab_wire.sym} 310 130 0 1 {name=p38 sig_type=std_logic lab=vss}
 C {lab_wire.sym} 100 -10 3 0 {name=p39 sig_type=std_logic lab=vdd}
-C {lab_wire.sym} -520 -380 3 0 {name=p40 sig_type=std_logic lab=vdd}
-C {isource.sym} -520 -170 0 0 {name=I0 value=10u}
-C {lab_wire.sym} -520 -80 3 1 {name=p41 sig_type=std_logic lab=vss}
-C {lab_wire.sym} -380 -280 0 0 {name=p42 sig_type=std_logic lab=vb_tail}
+C {lab_wire.sym} -700 500 3 0 {name=p40 sig_type=std_logic lab=vdd}
+C {isource.sym} -700 710 0 0 {name=I0 value=10u}
+C {lab_wire.sym} -700 800 3 1 {name=p41 sig_type=std_logic lab=vss}
+C {lab_wire.sym} -560 600 0 0 {name=p42 sig_type=std_logic lab=vb_tail}
 C {vsource.sym} -700 -170 0 0 {name=V1 value=2.0 savecurrent=false}
 C {lab_wire.sym} -700 -80 3 1 {name=p43 sig_type=std_logic lab=vss}
 C {lab_wire.sym} -700 -250 3 0 {name=p44 sig_type=std_logic lab=vb_p}
-C {sg13g2_pr/sg13_hv_nmos.sym} -200 -180 0 0 {name=M13
+C {sg13g2_pr/sg13_hv_nmos.sym} -380 700 0 0 {name=M13
 l=0.45u
 w=0.3u
 ng=1
@@ -278,10 +278,10 @@ m=1
 model=sg13_hv_nmos
 spiceprefix=X
 }
-C {isource.sym} -180 -280 0 0 {name=I1 value=10u}
-C {lab_wire.sym} -180 -360 3 0 {name=p45 sig_type=std_logic lab=vdd}
-C {lab_wire.sym} -180 -80 3 1 {name=p46 sig_type=std_logic lab=vss}
-C {lab_wire.sym} -320 -180 0 1 {name=p47 sig_type=std_logic lab=nmirror}
+C {isource.sym} -360 600 0 0 {name=I1 value=10u}
+C {lab_wire.sym} -360 520 3 0 {name=p45 sig_type=std_logic lab=vdd}
+C {lab_wire.sym} -360 800 3 1 {name=p46 sig_type=std_logic lab=vss}
+C {lab_wire.sym} -500 700 0 1 {name=p47 sig_type=std_logic lab=nmirror}
 C {vsource.sym} -700 70 0 0 {name=V2 value=1.65 savecurrent=false}
 C {lab_wire.sym} -700 160 3 1 {name=p48 sig_type=std_logic lab=vss}
 C {lab_wire.sym} -700 -20 3 0 {name=p49 sig_type=std_logic lab=A1_cm}

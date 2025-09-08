@@ -40,7 +40,7 @@ N 430 90 430 130 {lab=vss}
 N 420 130 430 130 {lab=vss}
 N 420 120 420 130 {lab=vss}
 N 420 130 420 160 {lab=vss}
-N 260 -30 280 -30 {lab=cm_bias}
+N 260 -30 280 -30 {lab=#net3}
 N 340 90 380 90 {lab=nbias}
 N 20 90 60 90 {lab=nbias}
 N 560 -30 600 -30 {lab=vinm}
@@ -51,10 +51,10 @@ N -220 130 -210 130 {lab=vss}
 N -220 120 -220 130 {lab=vss}
 N -220 130 -220 160 {lab=vss}
 N -300 90 -260 90 {lab=nbias}
-N -220 -150 -210 -150 {lab=#net3}
-N -210 -190 -210 -150 {lab=#net3}
-N -220 -190 -210 -190 {lab=#net3}
-N -220 -190 -220 -180 {lab=#net3}
+N -220 -150 -210 -150 {lab=#net4}
+N -210 -190 -210 -150 {lab=#net4}
+N -220 -190 -210 -190 {lab=#net4}
+N -220 -190 -220 -180 {lab=#net4}
 N -300 -150 -260 -150 {lab=pbias}
 N 740 90 750 90 {lab=vss}
 N 750 90 750 130 {lab=vss}
@@ -64,29 +64,29 @@ N 740 130 740 160 {lab=vss}
 N 660 90 700 90 {lab=nbias}
 N -220 -30 -220 60 {lab=voutm}
 N 740 -30 740 60 {lab=voutp}
-N 740 -150 750 -150 {lab=#net4}
-N 750 -190 750 -150 {lab=#net4}
-N 740 -190 750 -190 {lab=#net4}
-N 740 -190 740 -180 {lab=#net4}
+N 740 -150 750 -150 {lab=#net5}
+N 750 -190 750 -150 {lab=#net5}
+N 740 -190 750 -190 {lab=#net5}
+N 740 -190 740 -180 {lab=#net5}
 N 660 -150 700 -150 {lab=pbias}
-N -220 -220 -220 -190 {lab=#net3}
-N -220 -220 0 -220 {lab=#net3}
-N 0 -220 -0 -60 {lab=#net3}
-N 10 -220 320 -220 {lab=#net3}
-N 320 -220 320 -60 {lab=#net3}
-N 200 -160 200 -60 {lab=#net4}
-N 200 -160 520 -160 {lab=#net4}
-N 520 -160 520 -60 {lab=#net4}
-N 740 -220 740 -190 {lab=#net4}
-N 520 -220 740 -220 {lab=#net4}
-N 520 -220 520 -160 {lab=#net4}
+N -220 -220 -220 -190 {lab=#net4}
+N -220 -220 0 -220 {lab=#net4}
+N 0 -220 -0 -60 {lab=#net4}
+N 10 -220 320 -220 {lab=#net4}
+N 320 -220 320 -60 {lab=#net4}
+N 200 -160 200 -60 {lab=#net5}
+N 200 -160 520 -160 {lab=#net5}
+N 520 -160 520 -60 {lab=#net5}
+N 740 -220 740 -190 {lab=#net5}
+N 520 -220 740 -220 {lab=#net5}
+N 520 -220 520 -160 {lab=#net5}
 N 520 -330 530 -330 {lab=vdd}
 N 530 -370 530 -330 {lab=vdd}
 N 520 -370 530 -370 {lab=vdd}
 N 520 -370 520 -360 {lab=vdd}
-N 10 -300 10 -220 {lab=#net3}
+N 10 -300 10 -220 {lab=#net4}
 N 50 -330 480 -330 {lab=pbias_top}
-N 520 -300 520 -220 {lab=#net4}
+N 520 -300 520 -220 {lab=#net5}
 N 0 -330 10 -330 {lab=vdd}
 N 10 -370 10 -360 {lab=vdd}
 N 0 -370 10 -370 {lab=vdd}
@@ -99,20 +99,17 @@ N -260 -30 -220 -30 {lab=voutm}
 N 740 -30 760 -30 {lab=voutp}
 N -600 30 -600 80 {lab=pbias}
 N -600 140 -600 160 {lab=vss}
-N -440 30 -440 80 {lab=cm_bias}
-N -440 140 -440 160 {lab=vss}
-N 260 -70 260 -30 {lab=cm_bias}
+N 260 -70 260 -30 {lab=#net3}
 N -220 160 100 160 {lab=vss}
 N 260 160 420 160 {lab=vss}
 N 420 160 740 160 {lab=vss}
 N 260 160 260 210 {lab=vss}
-N -440 160 -220 160 {lab=vss}
-N -520 160 -440 160 {lab=vss}
-N -0 -220 10 -220 {lab=#net3}
+N -520 160 -220 160 {lab=vss}
+N -0 -220 10 -220 {lab=#net4}
 N 10 -420 280 -420 {lab=vdd}
 N -220 -120 -220 -30 {lab=voutm}
 N 740 -120 740 -30 {lab=voutp}
-N 240 -30 260 -30 {lab=cm_bias}
+N 240 -30 260 -30 {lab=#net3}
 N 100 160 260 160 {lab=vss}
 N -510 420 -490 420 {lab=vss}
 N -510 420 -510 470 {lab=vss}
@@ -207,9 +204,6 @@ C {iopin.sym} 760 -30 2 1 {name=p11 lab=voutp}
 C {iopin.sym} 600 -30 2 1 {name=p10 lab=vinm}
 C {lab_wire.sym} 270 -330 0 0 {name=p3 sig_type=std_logic lab=pbias_top}
 C {vsource.sym} -600 110 0 0 {name=V3 value=1.80 savecurrent=false}
-C {vsource.sym} -440 110 0 0 {name=V4 value=1.65 savecurrent=false}
-C {lab_wire.sym} 260 -70 0 0 {name=p13 sig_type=std_logic lab=cm_bias}
-C {lab_wire.sym} -440 30 3 1 {name=p21 sig_type=std_logic lab=cm_bias}
 C {lab_wire.sym} -600 30 3 1 {name=p23 sig_type=std_logic lab=pbias}
 C {sg13g2_pr/sg13_hv_pmos.sym} -240 -150 0 0 {name=M9
 l=2.0u
@@ -269,3 +263,5 @@ C {lab_wire.sym} -490 240 0 0 {name=p19 sig_type=std_logic lab=vdd}
 C {vsource.sym} -520 110 0 0 {name=V1 value=2.2 savecurrent=false}
 C {lab_wire.sym} -520 30 3 1 {name=p22 sig_type=std_logic lab=pbias_top}
 C {lab_wire.sym} -370 420 0 0 {name=p20 sig_type=std_logic lab=nbias}
+C {iopin.sym} -80 -30 2 0 {name=p12 lab=vinp}
+C {iopin.sym} 260 -70 3 0 {name=p14 lab=cm_in}

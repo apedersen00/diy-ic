@@ -1,0 +1,123 @@
+** sch_path: /home/andre/diy-ic/testbench/balaudio_amp_tb.sch
+**.subckt balaudio_amp_tb
+C2 voutp GND 500f m=1
+V2 vdd GND DC 3.3
+V1 net1 vinp DC 0 AC 0.5
+V3 vinm net1 DC 0 AC 0.5
+V4 net1 GND DC 1.65
+L2 voutp vinm 4G m=1
+L7 voutm vinp 4G m=1
+x1 vdd vinm vinp voutm voutp GND balaudio_amp
+C3 voutm GND 500f m=1
+C4 vinp GND 4G m=1
+C5 vinm GND 4G m=1
+**** begin user architecture code
+
+.lib cornerMOShv.lib mos_tt
+.lib /home/andre/os_eda/IHP-Open-PDK/ihp-sg13g2/libs.tech/ngspice/models/cornerCAP.lib cap_typ
+
+
+
+.param temp=27
+.include aux_amp_tb.save
+.control
+
+* --- OP ---
+op
+save all
+write aux_amp_tb.raw
+set appendwrite
+
+* --- DC Sweep ---
+tran 10u 10m
+save all
+
+* --- AC Sweep ---
+ac dec 100 10 100e6
+save all
+
+let Av = db(v(voutp))
+let Phase = 180/3.14*vp(voutp) - 180
+let CMRR = db((v(voutp)/v(vinp))/(v(voutp_cmrr)/v(vinp)))
+let PSRR = db(v(voutp_psrr)/v(vdd_ac))
+
+echo ---
+meas ac gm_db find vdb(voutp) when vp(voutp)=0
+meas ac pm_deg find Phase when vdb(voutp)=0
+meas ac _3db_f when Phase=-45
+meas ac _0db_f when vdb(voutp)=0
+meas ac dc_gain find vdb(voutp) at=10
+echo ---
+
+write aux_amp_tb.raw
+.endc
+
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  balaudio_amp.sym # of pins=6
+** sym_path: /home/andre/diy-ic/schematic/balaudio_amp.sym
+** sch_path: /home/andre/diy-ic/schematic/balaudio_amp.sch
+.subckt balaudio_amp vdd vi- vi+ vo+ vo- vss
+*.iopin vdd
+*.iopin vss
+*.iopin vi+
+*.iopin vi-
+*.iopin vo-
+*.iopin vo+
+XM1 A2_vi+ nmirror vss vss sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
+XM2 A2_vi- vi- net1 vdd sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
+XM3 A2_vi+ vi+ net1 vdd sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
+XM4 net1 vb_tail vdd vdd sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
+XM5 A2_vi- nmirror vss vss sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
+XM6 vo- A2_vo- A2_vi+ vss sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
+XM7 vo+ A2_vo+ A2_vi- vss sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
+XM8 A1_vi+ vb_p vdd vdd sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
+XM9 A1_vi- vb_p vdd vdd sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
+XM10 vo- A1_vo- A1_vi+ vdd sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
+XM11 vo+ A1_vo+ A1_vi- vdd sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
+x1 vdd A1_vi+ A1_vi- A1_vo+ A1_vo- vss A1_cm aux_amp
+x2 vdd A2_vi+ A2_vi- A2_vo+ A2_vo- vss A2_cm aux_amp
+XM12 vb_tail vb_tail vdd vdd sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
+I0 vb_tail vss 10u
+V1 vb_p vss 2.0
+XM13 nmirror nmirror vss vss sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
+I1 vdd nmirror 10u
+V2 A1_cm vss 1.65
+V3 A2_cm vss 1.65
+.ends
+
+
+* expanding   symbol:  aux_amp.sym # of pins=7
+** sym_path: /home/andre/diy-ic/schematic/aux_amp.sym
+** sch_path: /home/andre/diy-ic/schematic/aux_amp.sch
+.subckt aux_amp vdd vinm vi+ voutp voutm vss cm_in
+*.iopin vss
+*.iopin voutm
+*.iopin vinp
+*.iopin vdd
+*.iopin voutp
+*.iopin vinm
+*.iopin vinp
+*.iopin cm_in
+XM1 net3 vinp net1 net1 sg13_hv_nmos w=80.0u l=10.0u ng=8 m=1
+XM2 net4 cm_in net1 net1 sg13_hv_nmos w=80.0u l=10.0u ng=8 m=1
+XM5 net1 nbias vss vss sg13_hv_nmos w=60.0u l=10.0u ng=8 m=1
+XM3 net3 cm_in net2 net2 sg13_hv_nmos w=80.0u l=10.0u ng=8 m=1
+XM4 net4 vinm net2 net2 sg13_hv_nmos w=80.0u l=10.0u ng=8 m=1
+XM6 net2 nbias vss vss sg13_hv_nmos w=60.0u l=10.0u ng=8 m=1
+XM11 voutm nbias vss vss sg13_hv_nmos w=29.0u l=10.0u ng=8 m=1
+XM12 voutp nbias vss vss sg13_hv_nmos w=29.0u l=10.0u ng=8 m=1
+V3 pbias vss 1.80
+XM9 voutm pbias net3 net3 sg13_hv_pmos w=15.0u l=2.0u ng=8 m=1
+XM7 net3 pbias_top vdd vdd sg13_hv_pmos w=4.0u l=1.0u ng=1 m=1
+XM8 net4 pbias_top vdd vdd sg13_hv_pmos w=4.0u l=1.0u ng=1 m=1
+XM10 voutp pbias net4 net4 sg13_hv_pmos w=15.0u l=2.0u ng=8 m=1
+XM14 nbias nbias vss vss sg13_hv_nmos w=29.0u l=10.0u ng=8 m=1
+I1 vdd nbias 1.0u
+V1 pbias_top vss 2.2
+.ends
+
+.GLOBAL GND
+.end

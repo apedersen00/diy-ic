@@ -288,3 +288,17 @@ C {lab_wire.sym} -700 -20 3 0 {name=p49 sig_type=std_logic lab=A1_cm}
 C {vsource.sym} -700 310 0 0 {name=V3 value=1.65 savecurrent=false}
 C {lab_wire.sym} -700 400 3 1 {name=p50 sig_type=std_logic lab=vss}
 C {lab_wire.sym} -700 220 3 0 {name=p51 sig_type=std_logic lab=A2_cm}
+C {sg13g2_pr/annotate_fet_params.sym} -540 -610 0 0 {name=annot1 ref=M1}
+C {sg13g2_pr/annotate_fet_params.sym} -540 -610 0 0 {name=annot2 ref=M1}
+C {sg13g2_pr/annotate_fet_params.sym} -420 -610 0 0 {name=annot3 ref=M1}
+C {sg13g2_pr/annotate_fet_params.sym} -300 -610 0 0 {name=annot4 ref=M1}
+C {sg13g2_pr/annotate_fet_params.sym} -180 -610 0 0 {name=annot5 ref=M1}
+C {sg13g2_pr/annotate_fet_params.sym} -540 -450 0 0 {name=annot6 ref=M1}
+C {sg13g2_pr/annotate_fet_params.sym} -540 -450 0 0 {name=annot7 ref=M1}
+C {sg13g2_pr/annotate_fet_params.sym} -420 -450 0 0 {name=annot8 ref=M1}
+C {sg13g2_pr/annotate_fet_params.sym} -300 -450 0 0 {name=annot9 ref=M1}
+C {sg13g2_pr/annotate_fet_params.sym} -180 -450 0 0 {name=annot10 ref=M1}
+C {sg13g2_pr/annotate_fet_params.sym} -540 -290 0 0 {name=annot11 ref=M1}
+C {sg13g2_pr/annotate_fet_params.sym} -540 -290 0 0 {name=annot12 ref=M1}
+C {sg13g2_pr/annotate_fet_params.sym} -420 -290 0 0 {name=annot13 ref=M1}
+C {sg13g2_pr/annotate_fet_params.sym} -300 -290 0 0 {name=annot14 ref=M1}

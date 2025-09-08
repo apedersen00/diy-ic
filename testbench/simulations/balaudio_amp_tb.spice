@@ -19,13 +19,13 @@ C5 vinm GND 4G m=1
 
 
 .param temp=27
-.include aux_amp_tb.save
+.include balaudio_amp_tb.save
 .control
 
 * --- OP ---
 op
 save all
-write aux_amp_tb.raw
+write balaudio_amp_tb.raw
 set appendwrite
 
 * --- DC Sweep ---
@@ -49,7 +49,7 @@ meas ac _0db_f when vdb(voutp)=0
 meas ac dc_gain find vdb(voutp) at=10
 echo ---
 
-write aux_amp_tb.raw
+write balaudio_amp_tb.raw
 .endc
 
 
@@ -66,17 +66,17 @@ write aux_amp_tb.raw
 *.iopin vi-
 *.iopin vo-
 *.iopin vo+
-XM1 A2_vi+ nmirror vss vss sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
-XM2 A2_vi- vi- net1 vdd sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
-XM3 A2_vi+ vi+ net1 vdd sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
-XM4 net1 vb_tail vdd vdd sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
+XM4 A2_vi+ nmirror vss vss sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
+XM1 A2_vi- vi- net1 vdd sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
+XM2 A2_vi+ vi+ net1 vdd sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
+XM3 net1 vb_tail vdd vdd sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
 XM5 A2_vi- nmirror vss vss sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
 XM6 vo- A2_vo- A2_vi+ vss sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
 XM7 vo+ A2_vo+ A2_vi- vss sg13_hv_nmos w=0.3u l=0.45u ng=1 m=1
-XM8 A1_vi+ vb_p vdd vdd sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
-XM9 A1_vi- vb_p vdd vdd sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
-XM10 vo- A1_vo- A1_vi+ vdd sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
-XM11 vo+ A1_vo+ A1_vi- vdd sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
+XM10 A1_vi+ vb_p vdd vdd sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
+XM11 A1_vi- vb_p vdd vdd sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
+XM8 vo- A1_vo- A1_vi+ vdd sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
+XM9 vo+ A1_vo+ A1_vi- vdd sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1
 x1 vdd A1_vi+ A1_vi- A1_vo+ A1_vo- vss A1_cm aux_amp
 x2 vdd A2_vi+ A2_vi- A2_vo+ A2_vo- vss A2_cm aux_amp
 XM12 vb_tail vb_tail vdd vdd sg13_hv_pmos w=0.3u l=0.4u ng=1 m=1

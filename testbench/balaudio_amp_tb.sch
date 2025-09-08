@@ -141,13 +141,13 @@ value="
 C {code_shown.sym} -1080 -1050 0 0 {name=NGSPICE only_toplevel=false
 value="
 .param temp=27
-.include aux_amp_tb.save
+.include balaudio_amp_tb.save
 .control
 
 * --- OP ---
 op
 save all
-write aux_amp_tb.raw
+write balaudio_amp_tb.raw
 set appendwrite
 
 * --- DC Sweep ---
@@ -171,7 +171,7 @@ meas ac _0db_f when vdb(voutp)=0
 meas ac dc_gain find vdb(voutp) at=10
 echo "---"
 
-write aux_amp_tb.raw
+write balaudio_amp_tb.raw
 .endc
 "}
 C {launcher.sym} 620 -40 0 0 {name=h5

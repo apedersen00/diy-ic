@@ -128,7 +128,7 @@ N -700 100 -700 160 {lab=vss}
 N -700 -20 -700 40 {lab=A1_cm}
 N -700 340 -700 400 {lab=vss}
 N -700 220 -700 280 {lab=A2_cm}
-C {sg13g2_pr/sg13_hv_nmos.sym} 380 310 0 0 {name=M1
+C {sg13g2_pr/sg13_hv_nmos.sym} 380 310 0 0 {name=M4
 l=0.45u
 w=0.3u
 ng=1
@@ -136,7 +136,7 @@ m=1
 model=sg13_hv_nmos
 spiceprefix=X
 }
-C {sg13g2_pr/sg13_hv_pmos.sym} -20 30 0 0 {name=M2
+C {sg13g2_pr/sg13_hv_pmos.sym} -20 30 0 0 {name=M1
 l=0.4u
 w=0.3u
 ng=1
@@ -144,7 +144,7 @@ m=1
 model=sg13_hv_pmos
 spiceprefix=X
 }
-C {sg13g2_pr/sg13_hv_pmos.sym} 220 30 0 1 {name=M3
+C {sg13g2_pr/sg13_hv_pmos.sym} 220 30 0 1 {name=M2
 l=0.4u
 w=0.3u
 ng=1
@@ -152,7 +152,7 @@ m=1
 model=sg13_hv_pmos
 spiceprefix=X
 }
-C {sg13g2_pr/sg13_hv_pmos.sym} 80 -110 0 0 {name=M4
+C {sg13g2_pr/sg13_hv_pmos.sym} 80 -110 0 0 {name=M3
 l=0.4u
 w=0.3u
 ng=1
@@ -184,7 +184,7 @@ m=1
 model=sg13_hv_nmos
 spiceprefix=X
 }
-C {sg13g2_pr/sg13_hv_pmos.sym} 420 -190 0 1 {name=M8
+C {sg13g2_pr/sg13_hv_pmos.sym} 420 -190 0 1 {name=M10
 l=0.4u
 w=0.3u
 ng=1
@@ -192,7 +192,7 @@ m=1
 model=sg13_hv_pmos
 spiceprefix=X
 }
-C {sg13g2_pr/sg13_hv_pmos.sym} 620 -190 0 0 {name=M9
+C {sg13g2_pr/sg13_hv_pmos.sym} 620 -190 0 0 {name=M11
 l=0.4u
 w=0.3u
 ng=1
@@ -200,7 +200,7 @@ m=1
 model=sg13_hv_pmos
 spiceprefix=X
 }
-C {sg13g2_pr/sg13_hv_pmos.sym} 420 -10 0 1 {name=M10
+C {sg13g2_pr/sg13_hv_pmos.sym} 420 -10 0 1 {name=M8
 l=0.4u
 w=0.3u
 ng=1
@@ -208,7 +208,7 @@ m=1
 model=sg13_hv_pmos
 spiceprefix=X
 }
-C {sg13g2_pr/sg13_hv_pmos.sym} 620 -10 0 0 {name=M11
+C {sg13g2_pr/sg13_hv_pmos.sym} 620 -10 0 0 {name=M9
 l=0.4u
 w=0.3u
 ng=1

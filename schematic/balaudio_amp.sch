@@ -219,7 +219,6 @@ spiceprefix=X
 C {aux_amp.sym} -260 220 0 0 {name=x1}
 C {lab_wire.sym} -330 0 3 0 {name=p1 sig_type=std_logic lab=vdd}
 C {lab_wire.sym} -330 200 3 1 {name=p2 sig_type=std_logic lab=vss}
-C {lab_wire.sym} -460 60 0 1 {name=p3 sig_type=std_logic lab=A1_vi+}
 C {lab_wire.sym} -460 140 0 1 {name=p4 sig_type=std_logic lab=A1_vi-}
 C {lab_wire.sym} -460 100 0 1 {name=p5 sig_type=std_logic lab=A1_cm}
 C {lab_wire.sym} -460 60 0 1 {name=p6 sig_type=std_logic lab=A1_vi+}
@@ -259,7 +258,6 @@ m=1
 model=sg13_hv_pmos
 spiceprefix=X
 }
-C {lab_wire.sym} 310 -10 0 1 {name=p34 sig_type=std_logic lab=vdd}
 C {lab_wire.sym} 730 -10 0 0 {name=p35 sig_type=std_logic lab=vdd}
 C {lab_wire.sym} 730 130 0 0 {name=p36 sig_type=std_logic lab=vss}
 C {lab_wire.sym} 310 -10 0 1 {name=p37 sig_type=std_logic lab=vdd}
@@ -271,7 +269,7 @@ C {lab_wire.sym} -520 -80 3 1 {name=p41 sig_type=std_logic lab=vss}
 C {lab_wire.sym} -380 -280 0 0 {name=p42 sig_type=std_logic lab=vb_tail}
 C {vsource.sym} -700 -170 0 0 {name=V1 value=2.0 savecurrent=false}
 C {lab_wire.sym} -700 -80 3 1 {name=p43 sig_type=std_logic lab=vss}
-C {lab_wire.sym} -700 -260 3 0 {name=p44 sig_type=std_logic lab=vb_p}
+C {lab_wire.sym} -700 -250 3 0 {name=p44 sig_type=std_logic lab=vb_p}
 C {sg13g2_pr/sg13_hv_nmos.sym} -200 -180 0 0 {name=M13
 l=0.45u
 w=0.3u

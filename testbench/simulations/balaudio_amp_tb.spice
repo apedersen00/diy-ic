@@ -95,7 +95,6 @@ V3 A2_cm vss 1.65
 .subckt aux_amp vdd vinm vi+ voutp voutm vss cm_in
 *.iopin vss
 *.iopin voutm
-*.iopin vinp
 *.iopin vdd
 *.iopin voutp
 *.iopin vinm
